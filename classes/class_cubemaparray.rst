@@ -37,7 +37,7 @@ The expected image order is X+, X-, Y+, Y-, Z+, Z- (in Godot's coordinate system
 
 - `6×1 cubemap template <https://raw.githubusercontent.com/godotengine/godot-docs/master/tutorials/assets_pipeline/img/cubemap_template_6x1.webp>`__\ 
 
-Multiple layers are stacked on top of each other when using the default vertical import option (with the first layer at the top). Alternatively, you can choose an horizontal layout in the import options (with the first layer at the left).
+Multiple layers are stacked on top of each other when using the default vertical import option (with the first layer at the top). Alternatively, you can choose a horizontal layout in the import options (with the first layer at the left).
 
 \ **Note:** **CubemapArray** is not supported in the Compatibility renderer due to graphics API limitations.
 
@@ -71,6 +71,7 @@ Method Descriptions
 Creates a placeholder version of this resource (:ref:`PlaceholderCubemapArray<class_PlaceholderCubemapArray>`).
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

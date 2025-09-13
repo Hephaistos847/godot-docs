@@ -27,9 +27,11 @@ The body's behavior can be adjusted via :ref:`lock_rotation<class_RigidBody3D_pr
 
 A rigid body will always maintain its shape and size, even when forces are applied to it. It is useful for objects that can be interacted with in an environment, such as a tree that can be knocked over or a stack of crates that can be pushed around.
 
+If you need to directly affect the body, prefer :ref:`_integrate_forces()<class_RigidBody3D_private_method__integrate_forces>` as it allows you to directly access the physics state.
+
 If you need to override the default physics behavior, you can write a custom force integration function. See :ref:`custom_integrator<class_RigidBody3D_property_custom_integrator>`.
 
-\ **Note:** Changing the 3D transform or :ref:`linear_velocity<class_RigidBody3D_property_linear_velocity>` of a **RigidBody3D** very often may lead to some unpredictable behaviors. If you need to directly affect the body, prefer :ref:`_integrate_forces()<class_RigidBody3D_private_method__integrate_forces>` as it allows you to directly access the physics state.
+\ **Note:** Changing the 3D transform or :ref:`linear_velocity<class_RigidBody3D_property_linear_velocity>` of a **RigidBody3D** very often may lead to some unpredictable behaviors. This also happens when a **RigidBody3D** is the descendant of a constantly moving node, like another **RigidBody3D**, as that will cause its global transform to be set whenever its ancestor moves.
 
 .. rst-class:: classref-introduction-group
 
@@ -37,6 +39,8 @@ Tutorials
 ---------
 
 - :doc:`Physics introduction <../tutorials/physics/physics_introduction>`
+
+- :doc:`Troubleshooting physics issues <../tutorials/physics/troubleshooting_physics_issues>`
 
 - `3D Truck Town Demo <https://godotengine.org/asset-library/asset/2752>`__
 
@@ -345,7 +349,7 @@ See :ref:`ProjectSettings.physics/3d/default_angular_damp<class_ProjectSettings_
 - |void| **set_angular_damp_mode**\ (\ value\: :ref:`DampMode<enum_RigidBody3D_DampMode>`\ )
 - :ref:`DampMode<enum_RigidBody3D_DampMode>` **get_angular_damp_mode**\ (\ )
 
-Defines how :ref:`angular_damp<class_RigidBody3D_property_angular_damp>` is applied. See :ref:`DampMode<enum_RigidBody3D_DampMode>` for possible values.
+Defines how :ref:`angular_damp<class_RigidBody3D_property_angular_damp>` is applied.
 
 .. rst-class:: classref-item-separator
 
@@ -398,7 +402,7 @@ If ``true``, the body can enter sleep mode when there is no movement. See :ref:`
 
 The body's custom center of mass, relative to the body's origin position, when :ref:`center_of_mass_mode<class_RigidBody3D_property_center_of_mass_mode>` is set to :ref:`CENTER_OF_MASS_MODE_CUSTOM<class_RigidBody3D_constant_CENTER_OF_MASS_MODE_CUSTOM>`. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
 
-When :ref:`center_of_mass_mode<class_RigidBody3D_property_center_of_mass_mode>` is set to :ref:`CENTER_OF_MASS_MODE_AUTO<class_RigidBody3D_constant_CENTER_OF_MASS_MODE_AUTO>` (default value), the center of mass is automatically computed.
+When :ref:`center_of_mass_mode<class_RigidBody3D_property_center_of_mass_mode>` is set to :ref:`CENTER_OF_MASS_MODE_AUTO<class_RigidBody3D_constant_CENTER_OF_MASS_MODE_AUTO>` (default value), the center of mass is automatically determined, but this does not update the value of :ref:`center_of_mass<class_RigidBody3D_property_center_of_mass>`.
 
 .. rst-class:: classref-item-separator
 
@@ -415,7 +419,7 @@ When :ref:`center_of_mass_mode<class_RigidBody3D_property_center_of_mass_mode>` 
 - |void| **set_center_of_mass_mode**\ (\ value\: :ref:`CenterOfMassMode<enum_RigidBody3D_CenterOfMassMode>`\ )
 - :ref:`CenterOfMassMode<enum_RigidBody3D_CenterOfMassMode>` **get_center_of_mass_mode**\ (\ )
 
-Defines the way the body's center of mass is set. See :ref:`CenterOfMassMode<enum_RigidBody3D_CenterOfMassMode>` for possible values.
+Defines the way the body's center of mass is set.
 
 .. rst-class:: classref-item-separator
 
@@ -548,7 +552,7 @@ For a body that is always frozen, use :ref:`StaticBody3D<class_StaticBody3D>` or
 - |void| **set_freeze_mode**\ (\ value\: :ref:`FreezeMode<enum_RigidBody3D_FreezeMode>`\ )
 - :ref:`FreezeMode<enum_RigidBody3D_FreezeMode>` **get_freeze_mode**\ (\ )
 
-The body's freeze mode. Can be used to set the body's behavior when :ref:`freeze<class_RigidBody3D_property_freeze>` is enabled. See :ref:`FreezeMode<enum_RigidBody3D_FreezeMode>` for possible values.
+The body's freeze mode. Can be used to set the body's behavior when :ref:`freeze<class_RigidBody3D_property_freeze>` is enabled.
 
 For a body that is always frozen, use :ref:`StaticBody3D<class_StaticBody3D>` or :ref:`AnimatableBody3D<class_AnimatableBody3D>` instead.
 
@@ -596,19 +600,19 @@ If set to :ref:`Vector3.ZERO<class_Vector3_constant_ZERO>`, inertia is automatic
  .. code-tab:: gdscript
 
     @onready var ball = $Ball
-    
+
     func get_ball_inertia():
         return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
 
  .. code-tab:: csharp
 
     private RigidBody3D _ball;
-    
+
     public override void _Ready()
     {
         _ball = GetNode<RigidBody3D>("Ball");
     }
-    
+
     private Vector3 GetBallInertia()
     {
         return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
@@ -650,7 +654,7 @@ See :ref:`ProjectSettings.physics/3d/default_linear_damp<class_ProjectSettings_p
 - |void| **set_linear_damp_mode**\ (\ value\: :ref:`DampMode<enum_RigidBody3D_DampMode>`\ )
 - :ref:`DampMode<enum_RigidBody3D_DampMode>` **get_linear_damp_mode**\ (\ )
 
-Defines how :ref:`linear_damp<class_RigidBody3D_property_linear_damp>` is applied. See :ref:`DampMode<enum_RigidBody3D_DampMode>` for possible values.
+Defines how :ref:`linear_damp<class_RigidBody3D_property_linear_damp>` is applied.
 
 .. rst-class:: classref-item-separator
 
@@ -958,6 +962,7 @@ Returns the inverse inertia tensor basis. This is used to calculate the angular 
 Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

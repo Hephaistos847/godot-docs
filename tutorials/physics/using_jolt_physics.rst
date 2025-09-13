@@ -8,7 +8,7 @@ Introduction
 
 The Jolt physics engine was added as an alternative to the existing Godot Physics
 physics engine in 4.4. Jolt is developed by Jorrit Rouwe with a focus on games and
-VR applications. Previously it was available as a extension but is now built into
+VR applications. Previously it was available as an extension but is now built into
 Godot.
 
 It is important to note that the built-in Jolt Physics module is considered
@@ -31,21 +31,6 @@ Notable differences to Godot Physics
 ------------------------------------
 
 There are many differences between the existing Godot Physics engine and Jolt.
-
-Area3D and static bodies
-~~~~~~~~~~~~~~~~~~~~~~~~
-When using Jolt, :ref:`class_Area3D` will not detect overlaps with :ref:`class_StaticBody3D`
-(nor a :ref:`class_RigidBody3D` frozen with ``FREEZE_MODE_STATIC``) by default, for
-performance reasons. If you have many/large :ref:`class_Area3D` overlapping with
-complex static geometry, such as :ref:`class_ConcavePolygonShape3D` or
-:ref:`class_HeightMapShape3D`, you can end up wasting a significant amount of CPU
-performance and memory without realizing it.
-
-For this reason this behavior is opt-in through the project setting
-:ref:`Physics > Jolt Physics 3D > Simulation > Areas Detect Static Bodies<class_ProjectSettings_property_physics/jolt_physics_3d/simulation/areas_detect_static_bodies>`,
-with the recommendation that you set up your collision layers and masks in such a
-way that only a few small :ref:`class_Area3D` are able to detect collisions with
-static bodies.
 
 Joint properties
 ~~~~~~~~~~~~~~~~

@@ -105,7 +105,11 @@ Methods
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`_exit_tree<class_Node_private_method__exit_tree>`\ (\ ) |virtual|                                                                                                                                                                 |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`PackedStringArray<class_PackedStringArray>`                | :ref:`_get_accessibility_configuration_warnings<class_Node_private_method__get_accessibility_configuration_warnings>`\ (\ ) |virtual| |const|                                                                                           |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedStringArray<class_PackedStringArray>`                | :ref:`_get_configuration_warnings<class_Node_private_method__get_configuration_warnings>`\ (\ ) |virtual| |const|                                                                                                                       |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`RID<class_RID>`                                            | :ref:`_get_focused_accessibility_element<class_Node_private_method__get_focused_accessibility_element>`\ (\ ) |virtual| |const|                                                                                                         |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`_input<class_Node_private_method__input>`\ (\ event\: :ref:`InputEvent<class_InputEvent>`\ ) |virtual|                                                                                                                            |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -135,6 +139,8 @@ Methods
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Variant<class_Variant>`                                    | :ref:`call_thread_safe<class_Node_method_call_thread_safe>`\ (\ method\: :ref:`StringName<class_StringName>`, ...\ ) |vararg|                                                                                                           |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                                          | :ref:`can_auto_translate<class_Node_method_can_auto_translate>`\ (\ ) |const|                                                                                                                                                           |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`can_process<class_Node_method_can_process>`\ (\ ) |const|                                                                                                                                                                         |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Tween<class_Tween>`                                        | :ref:`create_tween<class_Node_method_create_tween>`\ (\ )                                                                                                                                                                               |
@@ -146,6 +152,8 @@ Methods
    | :ref:`Array<class_Array>`\[:ref:`Node<class_Node>`\]             | :ref:`find_children<class_Node_method_find_children>`\ (\ pattern\: :ref:`String<class_String>`, type\: :ref:`String<class_String>` = "", recursive\: :ref:`bool<class_bool>` = true, owned\: :ref:`bool<class_bool>` = true\ ) |const| |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Node<class_Node>`                                          | :ref:`find_parent<class_Node_method_find_parent>`\ (\ pattern\: :ref:`String<class_String>`\ ) |const|                                                                                                                                  |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`RID<class_RID>`                                            | :ref:`get_accessibility_element<class_Node_method_get_accessibility_element>`\ (\ ) |const|                                                                                                                                             |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Node<class_Node>`                                          | :ref:`get_child<class_Node_method_get_child>`\ (\ idx\: :ref:`int<class_int>`, include_internal\: :ref:`bool<class_bool>` = false\ ) |const|                                                                                            |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -167,6 +175,10 @@ Methods
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Node<class_Node>`                                          | :ref:`get_node_or_null<class_Node_method_get_node_or_null>`\ (\ path\: :ref:`NodePath<class_NodePath>`\ ) |const|                                                                                                                       |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Variant<class_Variant>`                                    | :ref:`get_node_rpc_config<class_Node_method_get_node_rpc_config>`\ (\ ) |const|                                                                                                                                                         |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`\[:ref:`int<class_int>`\]               | :ref:`get_orphan_node_ids<class_Node_method_get_orphan_node_ids>`\ (\ ) |static|                                                                                                                                                        |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Node<class_Node>`                                          | :ref:`get_parent<class_Node_method_get_parent>`\ (\ ) |const|                                                                                                                                                                           |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`NodePath<class_NodePath>`                                  | :ref:`get_path<class_Node_method_get_path>`\ (\ ) |const|                                                                                                                                                                               |
@@ -176,8 +188,6 @@ Methods
    | :ref:`float<class_float>`                                        | :ref:`get_physics_process_delta_time<class_Node_method_get_physics_process_delta_time>`\ (\ ) |const|                                                                                                                                   |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                                        | :ref:`get_process_delta_time<class_Node_method_get_process_delta_time>`\ (\ ) |const|                                                                                                                                                   |
-   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Variant<class_Variant>`                                    | :ref:`get_rpc_config<class_Node_method_get_rpc_config>`\ (\ ) |const|                                                                                                                                                                   |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`get_scene_instance_load_placeholder<class_Node_method_get_scene_instance_load_placeholder>`\ (\ ) |const|                                                                                                                         |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -248,6 +258,8 @@ Methods
    | |void|                                                           | :ref:`propagate_call<class_Node_method_propagate_call>`\ (\ method\: :ref:`StringName<class_StringName>`, args\: :ref:`Array<class_Array>` = [], parent_first\: :ref:`bool<class_bool>` = false\ )                                      |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`propagate_notification<class_Node_method_propagate_notification>`\ (\ what\: :ref:`int<class_int>`\ )                                                                                                                             |
+   +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`queue_accessibility_update<class_Node_method_queue_accessibility_update>`\ (\ )                                                                                                                                                   |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`queue_free<class_Node_method_queue_free>`\ (\ )                                                                                                                                                                                   |
    +------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -624,7 +636,7 @@ enum **DuplicateFlags**: :ref:`🔗<enum_Node_DuplicateFlags>`
 
 :ref:`DuplicateFlags<enum_Node_DuplicateFlags>` **DUPLICATE_SIGNALS** = ``1``
 
-Duplicate the node's signal connections.
+Duplicate the node's signal connections that are connected with the :ref:`Object.CONNECT_PERSIST<class_Object_constant_CONNECT_PERSIST>` flag.
 
 .. _class_Node_constant_DUPLICATE_GROUPS:
 
@@ -1023,6 +1035,14 @@ Notification received when the mouse cursor enters the :ref:`Viewport<class_View
 
 Notification received when the mouse cursor leaves the :ref:`Viewport<class_Viewport>`'s visible area, that is not occluded behind other :ref:`Control<class_Control>`\ s or :ref:`Window<class_Window>`\ s, provided its :ref:`Viewport.gui_disable_input<class_Viewport_property_gui_disable_input>` is ``false`` and regardless if it's currently focused or not.
 
+.. _class_Node_constant_NOTIFICATION_WM_POSITION_CHANGED:
+
+.. rst-class:: classref-constant
+
+**NOTIFICATION_WM_POSITION_CHANGED** = ``1012`` :ref:`🔗<class_Node_constant_NOTIFICATION_WM_POSITION_CHANGED>`
+
+Notification received when the window is moved.
+
 .. _class_Node_constant_NOTIFICATION_OS_MEMORY_WARNING:
 
 .. rst-class:: classref-constant
@@ -1130,6 +1150,22 @@ Implemented on desktop and mobile platforms.
 **NOTIFICATION_TEXT_SERVER_CHANGED** = ``2018`` :ref:`🔗<class_Node_constant_NOTIFICATION_TEXT_SERVER_CHANGED>`
 
 Notification received when the :ref:`TextServer<class_TextServer>` is changed.
+
+.. _class_Node_constant_NOTIFICATION_ACCESSIBILITY_UPDATE:
+
+.. rst-class:: classref-constant
+
+**NOTIFICATION_ACCESSIBILITY_UPDATE** = ``3000`` :ref:`🔗<class_Node_constant_NOTIFICATION_ACCESSIBILITY_UPDATE>`
+
+Notification received when an accessibility information update is required.
+
+.. _class_Node_constant_NOTIFICATION_ACCESSIBILITY_INVALIDATE:
+
+.. rst-class:: classref-constant
+
+**NOTIFICATION_ACCESSIBILITY_INVALIDATE** = ``3001`` :ref:`🔗<class_Node_constant_NOTIFICATION_ACCESSIBILITY_INVALIDATE>`
+
+Notification received when accessibility elements are invalidated. All node accessibility elements are automatically deleted after receiving this message, therefore all existing references to such elements should be discarded.
 
 .. rst-class:: classref-section-separator
 
@@ -1243,9 +1279,13 @@ The owner of this node. The owner must be an ancestor of this node. When packing
 - |void| **set_physics_interpolation_mode**\ (\ value\: :ref:`PhysicsInterpolationMode<enum_Node_PhysicsInterpolationMode>`\ )
 - :ref:`PhysicsInterpolationMode<enum_Node_PhysicsInterpolationMode>` **get_physics_interpolation_mode**\ (\ )
 
-Allows enabling or disabling physics interpolation per node, offering a finer grain of control than turning physics interpolation on and off globally. See :ref:`ProjectSettings.physics/common/physics_interpolation<class_ProjectSettings_property_physics/common/physics_interpolation>` and :ref:`SceneTree.physics_interpolation<class_SceneTree_property_physics_interpolation>` for the global setting.
+The physics interpolation mode to use for this node. Only effective if :ref:`ProjectSettings.physics/common/physics_interpolation<class_ProjectSettings_property_physics/common/physics_interpolation>` or :ref:`SceneTree.physics_interpolation<class_SceneTree_property_physics_interpolation>` is ``true``.
 
-\ **Note:** When teleporting a node to a distant position you should temporarily disable interpolation with :ref:`reset_physics_interpolation()<class_Node_method_reset_physics_interpolation>`.
+By default, nodes inherit the physics interpolation mode from their parent. This property can enable or disable physics interpolation individually for each node, regardless of their parents' physics interpolation mode.
+
+\ **Note:** Some node types like :ref:`VehicleWheel3D<class_VehicleWheel3D>` have physics interpolation disabled by default, as they rely on their own custom solution.
+
+\ **Note:** When teleporting a node to a distant position, it's recommended to temporarily disable interpolation with :ref:`reset_physics_interpolation()<class_Node_method_reset_physics_interpolation>` *after* moving the node. This avoids creating a visual streak between the old and new positions.
 
 .. rst-class:: classref-item-separator
 
@@ -1262,7 +1302,7 @@ Allows enabling or disabling physics interpolation per node, offering a finer gr
 - |void| **set_process_mode**\ (\ value\: :ref:`ProcessMode<enum_Node_ProcessMode>`\ )
 - :ref:`ProcessMode<enum_Node_ProcessMode>` **get_process_mode**\ (\ )
 
-The node's processing behavior (see :ref:`ProcessMode<enum_Node_ProcessMode>`). To check if the node can process in its current mode, use :ref:`can_process()<class_Node_method_can_process>`.
+The node's processing behavior. To check if the node can process in its current mode, use :ref:`can_process()<class_Node_method_can_process>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1428,6 +1468,20 @@ Corresponds to the :ref:`NOTIFICATION_EXIT_TREE<class_Node_constant_NOTIFICATION
 
 ----
 
+.. _class_Node_private_method__get_accessibility_configuration_warnings:
+
+.. rst-class:: classref-method
+
+:ref:`PackedStringArray<class_PackedStringArray>` **_get_accessibility_configuration_warnings**\ (\ ) |virtual| |const| :ref:`🔗<class_Node_private_method__get_accessibility_configuration_warnings>`
+
+The elements in the array returned from this method are displayed as warnings in the Scene dock if the script that overrides it is a ``tool`` script, and accessibility warnings are enabled in the editor settings.
+
+Returning an empty array produces no warnings.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Node_private_method__get_configuration_warnings:
 
 .. rst-class:: classref-method
@@ -1446,12 +1500,24 @@ Call :ref:`update_configuration_warnings()<class_Node_method_update_configuratio
         set(value):
             energy = value
             update_configuration_warnings()
-    
+
     func _get_configuration_warnings():
         if energy < 0:
             return ["Energy must be 0 or greater."]
         else:
             return []
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Node_private_method__get_focused_accessibility_element:
+
+.. rst-class:: classref-method
+
+:ref:`RID<class_RID>` **_get_focused_accessibility_element**\ (\ ) |virtual| |const| :ref:`🔗<class_Node_private_method__get_focused_accessibility_element>`
+
+Called during accessibility information updates to determine the currently focused sub-element, should return a sub-element RID or the value returned by :ref:`get_accessibility_element()<class_Node_method_get_accessibility_element>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1483,9 +1549,9 @@ For gameplay input, :ref:`_unhandled_input()<class_Node_private_method__unhandle
 
 |void| **_physics_process**\ (\ delta\: :ref:`float<class_float>`\ ) |virtual| :ref:`🔗<class_Node_private_method__physics_process>`
 
-Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the ``delta`` parameter will *generally* be constant (see exceptions below). ``delta`` is in seconds.
+Called once on each physics tick, and allows Nodes to synchronize their logic with physics ticks. ``delta`` is the logical time between physics ticks in seconds and is equal to :ref:`Engine.time_scale<class_Engine_property_time_scale>` / :ref:`Engine.physics_ticks_per_second<class_Engine_property_physics_ticks_per_second>`.
 
-It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with :ref:`set_physics_process()<class_Node_method_set_physics_process>`.
+It is only called if physics processing is enabled for this Node, which is done automatically if this method is overridden, and can be toggled with :ref:`set_physics_process()<class_Node_method_set_physics_process>`.
 
 Processing happens in order of :ref:`process_physics_priority<class_Node_property_process_physics_priority>`, lower priority values are called first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the editor (also known as pre-order traversal).
 
@@ -1493,7 +1559,7 @@ Corresponds to the :ref:`NOTIFICATION_PHYSICS_PROCESS<class_Node_constant_NOTIFI
 
 \ **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
 
-\ **Note:** ``delta`` will be larger than expected if running at a framerate lower than :ref:`Engine.physics_ticks_per_second<class_Engine_property_physics_ticks_per_second>` / :ref:`Engine.max_physics_steps_per_frame<class_Engine_property_max_physics_steps_per_frame>` FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both :ref:`_process()<class_Node_private_method__process>` and :ref:`_physics_process()<class_Node_private_method__physics_process>`. As a result, avoid using ``delta`` for time measurements in real-world seconds. Use the :ref:`Time<class_Time>` singleton's methods for this purpose instead, such as :ref:`Time.get_ticks_usec()<class_Time_method_get_ticks_usec>`.
+\ **Note:** Accumulated ``delta`` may diverge from real world seconds.
 
 .. rst-class:: classref-item-separator
 
@@ -1505,9 +1571,9 @@ Corresponds to the :ref:`NOTIFICATION_PHYSICS_PROCESS<class_Node_constant_NOTIFI
 
 |void| **_process**\ (\ delta\: :ref:`float<class_float>`\ ) |virtual| :ref:`🔗<class_Node_private_method__process>`
 
-Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the ``delta`` time since the previous frame is not constant. ``delta`` is in seconds.
+Called on each idle frame, prior to rendering, and after physics ticks have been processed. ``delta`` is the time between frames in seconds.
 
-It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with :ref:`set_process()<class_Node_method_set_process>`.
+It is only called if processing is enabled for this Node, which is done automatically if this method is overridden, and can be toggled with :ref:`set_process()<class_Node_method_set_process>`.
 
 Processing happens in order of :ref:`process_priority<class_Node_property_process_priority>`, lower priority values are called first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the editor (also known as pre-order traversal).
 
@@ -1515,7 +1581,11 @@ Corresponds to the :ref:`NOTIFICATION_PROCESS<class_Node_constant_NOTIFICATION_P
 
 \ **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
 
-\ **Note:** ``delta`` will be larger than expected if running at a framerate lower than :ref:`Engine.physics_ticks_per_second<class_Engine_property_physics_ticks_per_second>` / :ref:`Engine.max_physics_steps_per_frame<class_Engine_property_max_physics_steps_per_frame>` FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both :ref:`_process()<class_Node_private_method__process>` and :ref:`_physics_process()<class_Node_private_method__physics_process>`. As a result, avoid using ``delta`` for time measurements in real-world seconds. Use the :ref:`Time<class_Time>` singleton's methods for this purpose instead, such as :ref:`Time.get_ticks_usec()<class_Time_method_get_ticks_usec>`.
+\ **Note:** When the engine is struggling and the frame rate is lowered, ``delta`` will increase. When ``delta`` is increased, it's capped at a maximum of :ref:`Engine.time_scale<class_Engine_property_time_scale>` \* :ref:`Engine.max_physics_steps_per_frame<class_Engine_property_max_physics_steps_per_frame>` / :ref:`Engine.physics_ticks_per_second<class_Engine_property_physics_ticks_per_second>`. As a result, accumulated ``delta`` may not represent real world time.
+
+\ **Note:** When ``--fixed-fps`` is enabled or the engine is running in Movie Maker mode (see :ref:`MovieWriter<class_MovieWriter>`), process ``delta`` will always be the same for every frame, regardless of how much time the frame took to render.
+
+\ **Note:** Frame delta may be post-processed by :ref:`OS.delta_smoothing<class_OS_property_delta_smoothing>` if this is enabled for the project.
 
 .. rst-class:: classref-item-separator
 
@@ -1611,7 +1681,7 @@ Adds a child ``node``. Nodes can have any number of children, but every child mu
 
 If ``force_readable_name`` is ``true``, improves the readability of the added ``node``. If not named, the ``node`` is renamed to its type, and if it shares :ref:`name<class_Node_property_name>` with a sibling, a number is suffixed more appropriately. This operation is very slow. As such, it is recommended leaving this to ``false``, which assigns a dummy name featuring ``@`` in both situations.
 
-If ``internal`` is different than :ref:`INTERNAL_MODE_DISABLED<class_Node_constant_INTERNAL_MODE_DISABLED>`, the child will be added as internal node. These nodes are ignored by methods like :ref:`get_children()<class_Node_method_get_children>`, unless their parameter ``include_internal`` is ``true``. The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. :ref:`ColorPicker<class_ColorPicker>`. See :ref:`InternalMode<enum_Node_InternalMode>` for available modes.
+If ``internal`` is different than :ref:`INTERNAL_MODE_DISABLED<class_Node_constant_INTERNAL_MODE_DISABLED>`, the child will be added as internal node. These nodes are ignored by methods like :ref:`get_children()<class_Node_method_get_children>`, unless their parameter ``include_internal`` is ``true``. It also prevents these nodes being duplicated with their parent. The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. :ref:`ColorPicker<class_ColorPicker>`.
 
 \ **Note:** If ``node`` already has a parent, this method will fail. Use :ref:`remove_child()<class_Node_method_remove_child>` first to remove ``node`` from its current parent. For example:
 
@@ -1744,6 +1814,18 @@ This function ensures that the calling of this function will succeed, no matter 
 
 ----
 
+.. _class_Node_method_can_auto_translate:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **can_auto_translate**\ (\ ) |const| :ref:`🔗<class_Node_method_can_auto_translate>`
+
+Returns ``true`` if this node can automatically translate messages depending on the current locale. See :ref:`auto_translate_mode<class_Node_property_auto_translate_mode>`, :ref:`atr()<class_Node_method_atr>`, and :ref:`atr_n()<class_Node_method_atr_n>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Node_method_can_process:
 
 .. rst-class:: classref-method
@@ -1805,7 +1887,7 @@ The Tween will start automatically on the next process frame or physics frame (d
 
 :ref:`Node<class_Node>` **duplicate**\ (\ flags\: :ref:`int<class_int>` = 15\ ) |const| :ref:`🔗<class_Node_method_duplicate>`
 
-Duplicates the node, returning a new node with all of its properties, signals, groups, and children copied from the original. The behavior can be tweaked through the ``flags`` (see :ref:`DuplicateFlags<enum_Node_DuplicateFlags>`).
+Duplicates the node, returning a new node with all of its properties, signals, groups, and children copied from the original. The behavior can be tweaked through the ``flags`` (see :ref:`DuplicateFlags<enum_Node_DuplicateFlags>`). Internal nodes are not duplicated.
 
 \ **Note:** For nodes with a :ref:`Script<class_Script>` attached, if :ref:`Object._init()<class_Object_private_method__init>` has been defined with required parameters, the duplicated node will not have a :ref:`Script<class_Script>`.
 
@@ -1869,13 +1951,27 @@ Finds the first ancestor of this node whose :ref:`name<class_Node_property_name>
 
 ----
 
+.. _class_Node_method_get_accessibility_element:
+
+.. rst-class:: classref-method
+
+:ref:`RID<class_RID>` **get_accessibility_element**\ (\ ) |const| :ref:`🔗<class_Node_method_get_accessibility_element>`
+
+Returns main accessibility element RID.
+
+\ **Note:** This method should be called only during accessibility information updates (:ref:`NOTIFICATION_ACCESSIBILITY_UPDATE<class_Node_constant_NOTIFICATION_ACCESSIBILITY_UPDATE>`).
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Node_method_get_child:
 
 .. rst-class:: classref-method
 
 :ref:`Node<class_Node>` **get_child**\ (\ idx\: :ref:`int<class_int>`, include_internal\: :ref:`bool<class_bool>` = false\ ) |const| :ref:`🔗<class_Node_method_get_child>`
 
-Fetches a child node by its index. Each child node has an index relative its siblings (see :ref:`get_index()<class_Node_method_get_index>`). The first child is at index 0. Negative values can also be used to start from the end of the list. This method can be used in combination with :ref:`get_child_count()<class_Node_method_get_child_count>` to iterate over this node's children. If no child exists at the given index, this method returns ``null`` and an error is generated.
+Fetches a child node by its index. Each child node has an index relative to its siblings (see :ref:`get_index()<class_Node_method_get_index>`). The first child is at index 0. Negative values can also be used to start from the end of the list. This method can be used in combination with :ref:`get_child_count()<class_Node_method_get_child_count>` to iterate over this node's children. If no child exists at the given index, this method returns ``null`` and an error is generated.
 
 If ``include_internal`` is ``false``, internal children are ignored (see :ref:`add_child()<class_Node_method_add_child>`'s ``internal`` parameter).
 
@@ -1883,7 +1979,7 @@ If ``include_internal`` is ``false``, internal children are ignored (see :ref:`a
 
     # Assuming the following are children of this node, in order:
     # First, Middle, Last.
-    
+
     var a = get_child(0).name  # a is "First"
     var b = get_child(1).name  # b is "Middle"
     var b = get_child(2).name  # b is "Last"
@@ -2064,7 +2160,7 @@ Fetches a node and its most nested resource as specified by the :ref:`NodePath<c
 
 - Element ``2`` is the remaining :ref:`NodePath<class_NodePath>`, referring to an existing, non-:ref:`Resource<class_Resource>` property (see :ref:`Object.get_indexed()<class_Object_method_get_indexed>`).
 
-\ **Example:** Assume that the child's :ref:`Sprite2D.texture<class_Sprite2D_property_texture>` has been assigned a :ref:`AtlasTexture<class_AtlasTexture>`:
+\ **Example:** Assume that the child's :ref:`Sprite2D.texture<class_Sprite2D_property_texture>` has been assigned an :ref:`AtlasTexture<class_AtlasTexture>`:
 
 
 .. tabs::
@@ -2075,12 +2171,12 @@ Fetches a node and its most nested resource as specified by the :ref:`NodePath<c
     print(a[0].name) # Prints Sprite2D
     print(a[1])      # Prints <null>
     print(a[2])      # Prints ^""
-    
+
     var b = get_node_and_resource("Area2D/Sprite2D:texture:atlas")
     print(b[0].name)        # Prints Sprite2D
     print(b[1].get_class()) # Prints AtlasTexture
     print(b[2])             # Prints ^""
-    
+
     var c = get_node_and_resource("Area2D/Sprite2D:texture:atlas:region")
     print(c[0].name)        # Prints Sprite2D
     print(c[1].get_class()) # Prints AtlasTexture
@@ -2092,12 +2188,12 @@ Fetches a node and its most nested resource as specified by the :ref:`NodePath<c
     GD.Print(a[0].Name); // Prints Sprite2D
     GD.Print(a[1]);      // Prints <null>
     GD.Print(a[2]);      // Prints ^"
-    
+
     var b = GetNodeAndResource(NodePath("Area2D/Sprite2D:texture:atlas"));
     GD.Print(b[0].name);        // Prints Sprite2D
     GD.Print(b[1].get_class()); // Prints AtlasTexture
     GD.Print(b[2]);             // Prints ^""
-    
+
     var c = GetNodeAndResource(NodePath("Area2D/Sprite2D:texture:atlas:region"));
     GD.Print(c[0].name);        // Prints Sprite2D
     GD.Print(c[1].get_class()); // Prints AtlasTexture
@@ -2116,6 +2212,34 @@ Fetches a node and its most nested resource as specified by the :ref:`NodePath<c
 :ref:`Node<class_Node>` **get_node_or_null**\ (\ path\: :ref:`NodePath<class_NodePath>`\ ) |const| :ref:`🔗<class_Node_method_get_node_or_null>`
 
 Fetches a node by :ref:`NodePath<class_NodePath>`. Similar to :ref:`get_node()<class_Node_method_get_node>`, but does not generate an error if ``path`` does not point to a valid node.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Node_method_get_node_rpc_config:
+
+.. rst-class:: classref-method
+
+:ref:`Variant<class_Variant>` **get_node_rpc_config**\ (\ ) |const| :ref:`🔗<class_Node_method_get_node_rpc_config>`
+
+Returns a :ref:`Dictionary<class_Dictionary>` mapping method names to their RPC configuration defined for this node using :ref:`rpc_config()<class_Node_method_rpc_config>`.
+
+\ **Note:** This method only returns the RPC configuration assigned via :ref:`rpc_config()<class_Node_method_rpc_config>`. See :ref:`Script.get_rpc_config()<class_Script_method_get_rpc_config>` to retrieve the RPCs defined by the :ref:`Script<class_Script>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Node_method_get_orphan_node_ids:
+
+.. rst-class:: classref-method
+
+:ref:`Array<class_Array>`\[:ref:`int<class_int>`\] **get_orphan_node_ids**\ (\ ) |static| :ref:`🔗<class_Node_method_get_orphan_node_ids>`
+
+Returns object IDs of all orphan nodes (nodes outside the :ref:`SceneTree<class_SceneTree>`). Used for debugging.
+
+\ **Note:** :ref:`get_orphan_node_ids()<class_Node_method_get_orphan_node_ids>` only works in debug builds. When called in a project exported in release mode, :ref:`get_orphan_node_ids()<class_Node_method_get_orphan_node_ids>` will return an empty array.
 
 .. rst-class:: classref-item-separator
 
@@ -2184,18 +2308,6 @@ Returns the time elapsed (in seconds) since the last physics callback. This valu
 Returns the time elapsed (in seconds) since the last process callback. This value is identical to :ref:`_process()<class_Node_private_method__process>`'s ``delta`` parameter, and may vary from frame to frame. See also :ref:`NOTIFICATION_PROCESS<class_Node_constant_NOTIFICATION_PROCESS>`.
 
 \ **Note:** The returned value will be larger than expected if running at a framerate lower than :ref:`Engine.physics_ticks_per_second<class_Engine_property_physics_ticks_per_second>` / :ref:`Engine.max_physics_steps_per_frame<class_Engine_property_max_physics_steps_per_frame>` FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both :ref:`_process()<class_Node_private_method__process>` and :ref:`_physics_process()<class_Node_private_method__physics_process>`. As a result, avoid using ``delta`` for time measurements in real-world seconds. Use the :ref:`Time<class_Time>` singleton's methods for this purpose instead, such as :ref:`Time.get_ticks_usec()<class_Time_method_get_ticks_usec>`.
-
-.. rst-class:: classref-item-separator
-
-----
-
-.. _class_Node_method_get_rpc_config:
-
-.. rst-class:: classref-method
-
-:ref:`Variant<class_Variant>` **get_rpc_config**\ (\ ) |const| :ref:`🔗<class_Node_method_get_rpc_config>`
-
-Returns a :ref:`Dictionary<class_Dictionary>` mapping method names to their RPC configuration defined for this node using :ref:`rpc_config()<class_Node_method_rpc_config>`.
 
 .. rst-class:: classref-item-separator
 
@@ -2679,6 +2791,18 @@ Calls :ref:`Object.notification()<class_Object_method_notification>` with ``what
 
 ----
 
+.. _class_Node_method_queue_accessibility_update:
+
+.. rst-class:: classref-method
+
+|void| **queue_accessibility_update**\ (\ ) :ref:`🔗<class_Node_method_queue_accessibility_update>`
+
+Queues an accessibility information update for this node.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Node_method_queue_free:
 
 .. rst-class:: classref-method
@@ -3007,7 +3131,7 @@ If set to ``true``, enables unhandled key input processing.
 
 |void| **set_scene_instance_load_placeholder**\ (\ load_placeholder\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_Node_method_set_scene_instance_load_placeholder>`
 
-If set to ``true``, the node becomes a :ref:`InstancePlaceholder<class_InstancePlaceholder>` when packed and instantiated from a :ref:`PackedScene<class_PackedScene>`. See also :ref:`get_scene_instance_load_placeholder()<class_Node_method_get_scene_instance_load_placeholder>`.
+If set to ``true``, the node becomes an :ref:`InstancePlaceholder<class_InstancePlaceholder>` when packed and instantiated from a :ref:`PackedScene<class_PackedScene>`. See also :ref:`get_scene_instance_load_placeholder()<class_Node_method_get_scene_instance_load_placeholder>`.
 
 .. rst-class:: classref-item-separator
 
@@ -3048,6 +3172,7 @@ This is the default behavior for all nodes. Calling :ref:`Object.set_translation
 Refreshes the warnings displayed for this node in the Scene dock. Use :ref:`_get_configuration_warnings()<class_Node_private_method__get_configuration_warnings>` to customize the warning messages to display.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -264,7 +264,7 @@ enum **TransformAlign**: :ref:`🔗<enum_GPUParticles3D_TransformAlign>`
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -276,7 +276,7 @@ enum **TransformAlign**: :ref:`🔗<enum_GPUParticles3D_TransformAlign>`
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -288,7 +288,7 @@ enum **TransformAlign**: :ref:`🔗<enum_GPUParticles3D_TransformAlign>`
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -300,7 +300,7 @@ enum **TransformAlign**: :ref:`🔗<enum_GPUParticles3D_TransformAlign>`
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -398,7 +398,7 @@ The base diameter for particle collision in meters. If particles appear to sink 
 - |void| **set_draw_order**\ (\ value\: :ref:`DrawOrder<enum_GPUParticles3D_DrawOrder>`\ )
 - :ref:`DrawOrder<enum_GPUParticles3D_DrawOrder>` **get_draw_order**\ (\ )
 
-Particle draw order. Uses :ref:`DrawOrder<enum_GPUParticles3D_DrawOrder>` values.
+Particle draw order.
 
 \ **Note:** :ref:`DRAW_ORDER_INDEX<class_GPUParticles3D_constant_DRAW_ORDER_INDEX>` is the only option that supports motion vectors for effects like TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.
 
@@ -504,7 +504,7 @@ The number of draw passes when rendering particles.
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -826,7 +826,7 @@ The amount of time the particle's trail should represent (in seconds). Only effe
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -966,6 +966,7 @@ If ``keep_seed`` is ``true``, the current random seed will be preserved. Useful 
 Sets the :ref:`Mesh<class_Mesh>` that is drawn at index ``pass``.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

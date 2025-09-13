@@ -44,7 +44,11 @@ Properties
    +-----------------------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`     | keep_title_visible                                                                | ``true`` (overrides :ref:`Window<class_Window_property_keep_title_visible>`) |
    +-----------------------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------+
-   | :ref:`String<class_String>` | :ref:`ok_button_text<class_AcceptDialog_property_ok_button_text>`                 | ``"OK"``                                                                     |
+   | :ref:`bool<class_bool>`     | maximize_disabled                                                                 | ``true`` (overrides :ref:`Window<class_Window_property_maximize_disabled>`)  |
+   +-----------------------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`     | minimize_disabled                                                                 | ``true`` (overrides :ref:`Window<class_Window_property_minimize_disabled>`)  |
+   +-----------------------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------+
+   | :ref:`String<class_String>` | :ref:`ok_button_text<class_AcceptDialog_property_ok_button_text>`                 | ``""``                                                                       |
    +-----------------------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------+
    | :ref:`String<class_String>` | title                                                                             | ``"Alert!"`` (overrides :ref:`Window<class_Window_property_title>`)          |
    +-----------------------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------+
@@ -134,7 +138,7 @@ Emitted when the dialog is accepted, i.e. the OK button is pressed.
 
 **custom_action**\ (\ action\: :ref:`StringName<class_StringName>`\ ) :ref:`🔗<class_AcceptDialog_signal_custom_action>`
 
-Emitted when a custom button is pressed. See :ref:`add_button()<class_AcceptDialog_method_add_button>`.
+Emitted when a custom button with an action is pressed. See :ref:`add_button()<class_AcceptDialog_method_add_button>`.
 
 .. rst-class:: classref-section-separator
 
@@ -173,7 +177,7 @@ Sets autowrapping for the text in the dialog.
 - |void| **set_close_on_escape**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **get_close_on_escape**\ (\ )
 
-If ``true``, the dialog will be hidden when the escape key (:ref:`@GlobalScope.KEY_ESCAPE<class_@GlobalScope_constant_KEY_ESCAPE>`) is pressed.
+If ``true``, the dialog will be hidden when the ``ui_cancel`` action is pressed (by default, this action is bound to :ref:`@GlobalScope.KEY_ESCAPE<class_@GlobalScope_constant_KEY_ESCAPE>`).
 
 .. rst-class:: classref-item-separator
 
@@ -219,14 +223,14 @@ The text displayed by the dialog.
 
 .. rst-class:: classref-property
 
-:ref:`String<class_String>` **ok_button_text** = ``"OK"`` :ref:`🔗<class_AcceptDialog_property_ok_button_text>`
+:ref:`String<class_String>` **ok_button_text** = ``""`` :ref:`🔗<class_AcceptDialog_property_ok_button_text>`
 
 .. rst-class:: classref-property-setget
 
 - |void| **set_ok_button_text**\ (\ value\: :ref:`String<class_String>`\ )
 - :ref:`String<class_String>` **get_ok_button_text**\ (\ )
 
-The text displayed by the OK button (see :ref:`get_ok_button()<class_AcceptDialog_method_get_ok_button>`).
+The text displayed by the OK button (see :ref:`get_ok_button()<class_AcceptDialog_method_get_ok_button>`). If empty, a default text will be used.
 
 .. rst-class:: classref-section-separator
 
@@ -243,7 +247,9 @@ Method Descriptions
 
 :ref:`Button<class_Button>` **add_button**\ (\ text\: :ref:`String<class_String>`, right\: :ref:`bool<class_bool>` = false, action\: :ref:`String<class_String>` = ""\ ) :ref:`🔗<class_AcceptDialog_method_add_button>`
 
-Adds a button with label ``text`` and a custom ``action`` to the dialog and returns the created button. ``action`` will be passed to the :ref:`custom_action<class_AcceptDialog_signal_custom_action>` signal when pressed.
+Adds a button with label ``text`` and a custom ``action`` to the dialog and returns the created button.
+
+If ``action`` is not empty, pressing the button will emit the :ref:`custom_action<class_AcceptDialog_signal_custom_action>` signal with the specified action string.
 
 If ``true``, ``right`` will place the button to the right of any sibling buttons.
 
@@ -369,6 +375,7 @@ The size of the vertical space between the dialog's content and the button row.
 The panel that fills the background of the window.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

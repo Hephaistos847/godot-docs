@@ -28,6 +28,10 @@ For game objects that don't require complex movement or collision detection, suc
 Tutorials
 ---------
 
+- :doc:`Physics introduction <../tutorials/physics/physics_introduction>`
+
+- :doc:`Troubleshooting physics issues <../tutorials/physics/troubleshooting_physics_issues>`
+
 - :doc:`Kinematic character (2D) <../tutorials/physics/kinematic_character_2d>`
 
 - `3D Kinematic Character Demo <https://godotengine.org/asset-library/asset/2739>`__
@@ -51,7 +55,7 @@ Properties
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
    | :ref:`bool<class_bool>`                                      | :ref:`floor_constant_speed<class_CharacterBody3D_property_floor_constant_speed>`   | ``false``            |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
-   | :ref:`float<class_float>`                                    | :ref:`floor_max_angle<class_CharacterBody3D_property_floor_max_angle>`             | ``0.785398``         |
+   | :ref:`float<class_float>`                                    | :ref:`floor_max_angle<class_CharacterBody3D_property_floor_max_angle>`             | ``0.7853982``        |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
    | :ref:`float<class_float>`                                    | :ref:`floor_snap_length<class_CharacterBody3D_property_floor_snap_length>`         | ``0.1``              |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
@@ -75,7 +79,7 @@ Properties
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
    | :ref:`Vector3<class_Vector3>`                                | :ref:`velocity<class_CharacterBody3D_property_velocity>`                           | ``Vector3(0, 0, 0)`` |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
-   | :ref:`float<class_float>`                                    | :ref:`wall_min_slide_angle<class_CharacterBody3D_property_wall_min_slide_angle>`   | ``0.261799``         |
+   | :ref:`float<class_float>`                                    | :ref:`wall_min_slide_angle<class_CharacterBody3D_property_wall_min_slide_angle>`   | ``0.2617994``        |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+----------------------+
 
 .. rst-class:: classref-reftable-group
@@ -240,7 +244,7 @@ If ``true``, the body will always move at the same speed on the ground no matter
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **floor_max_angle** = ``0.785398`` :ref:`🔗<class_CharacterBody3D_property_floor_max_angle>`
+:ref:`float<class_float>` **floor_max_angle** = ``0.7853982`` :ref:`🔗<class_CharacterBody3D_property_floor_max_angle>`
 
 .. rst-class:: classref-property-setget
 
@@ -302,7 +306,7 @@ If ``false``, the body will slide on floor's slopes when :ref:`velocity<class_Ch
 - |void| **set_max_slides**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_max_slides**\ (\ )
 
-Maximum number of times the body can change direction before it stops when calling :ref:`move_and_slide()<class_CharacterBody3D_method_move_and_slide>`.
+Maximum number of times the body can change direction before it stops when calling :ref:`move_and_slide()<class_CharacterBody3D_method_move_and_slide>`. Must be greater than zero.
 
 .. rst-class:: classref-item-separator
 
@@ -319,7 +323,7 @@ Maximum number of times the body can change direction before it stops when calli
 - |void| **set_motion_mode**\ (\ value\: :ref:`MotionMode<enum_CharacterBody3D_MotionMode>`\ )
 - :ref:`MotionMode<enum_CharacterBody3D_MotionMode>` **get_motion_mode**\ (\ )
 
-Sets the motion mode which defines the behavior of :ref:`move_and_slide()<class_CharacterBody3D_method_move_and_slide>`. See :ref:`MotionMode<enum_CharacterBody3D_MotionMode>` constants for available modes.
+Sets the motion mode which defines the behavior of :ref:`move_and_slide()<class_CharacterBody3D_method_move_and_slide>`.
 
 .. rst-class:: classref-item-separator
 
@@ -353,7 +357,7 @@ Collision layers that will be included for detecting floor bodies that will act 
 - |void| **set_platform_on_leave**\ (\ value\: :ref:`PlatformOnLeave<enum_CharacterBody3D_PlatformOnLeave>`\ )
 - :ref:`PlatformOnLeave<enum_CharacterBody3D_PlatformOnLeave>` **get_platform_on_leave**\ (\ )
 
-Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See :ref:`PlatformOnLeave<enum_CharacterBody3D_PlatformOnLeave>` constants for available behavior.
+Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied.
 
 .. rst-class:: classref-item-separator
 
@@ -454,14 +458,14 @@ Current velocity vector (typically meters per second), used and modified during 
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **wall_min_slide_angle** = ``0.261799`` :ref:`🔗<class_CharacterBody3D_property_wall_min_slide_angle>`
+:ref:`float<class_float>` **wall_min_slide_angle** = ``0.2617994`` :ref:`🔗<class_CharacterBody3D_property_wall_min_slide_angle>`
 
 .. rst-class:: classref-property-setget
 
 - |void| **set_wall_min_slide_angle**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_wall_min_slide_angle**\ (\ )
 
-Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. When :ref:`motion_mode<class_CharacterBody3D_property_motion_mode>` is :ref:`MOTION_MODE_GROUNDED<class_CharacterBody3D_constant_MOTION_MODE_GROUNDED>`, it only affects movement if :ref:`floor_block_on_wall<class_CharacterBody3D_property_floor_block_on_wall>` is ``true``.
+Minimum angle (in radians) where the body is allowed to slide when it encounters a wall. The default value equals 15 degrees. When :ref:`motion_mode<class_CharacterBody3D_property_motion_mode>` is :ref:`MOTION_MODE_GROUNDED<class_CharacterBody3D_constant_MOTION_MODE_GROUNDED>`, it only affects movement if :ref:`floor_block_on_wall<class_CharacterBody3D_property_floor_block_on_wall>` is ``true``.
 
 .. rst-class:: classref-section-separator
 
@@ -707,6 +711,7 @@ When the body touches a moving platform, the platform's velocity is automaticall
 Returns ``true`` if the body collided, otherwise, returns ``false``.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

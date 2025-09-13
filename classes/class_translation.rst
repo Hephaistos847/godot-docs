@@ -30,6 +30,8 @@ Tutorials
 
 - :doc:`Internationalizing games <../tutorials/i18n/internationalizing_games>`
 
+- :doc:`Localization using gettext <../tutorials/i18n/localization_using_gettext>`
+
 - :doc:`Locales <../tutorials/i18n/locales>`
 
 .. rst-class:: classref-reftable-group
@@ -153,6 +155,8 @@ Adds a message involving plural translation if nonexistent, followed by its tran
 
 An additional context could be used to specify the translation context or differentiate polysemic words.
 
+\ **Note:** Plurals are only supported in :doc:`gettext-based translations (PO) <../tutorials/i18n/localization_using_gettext>`, not CSV.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -215,6 +219,8 @@ Returns a message's translation involving plurals.
 
 The number ``n`` is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
 
+\ **Note:** Plurals are only supported in :doc:`gettext-based translations (PO) <../tutorials/i18n/localization_using_gettext>`, not CSV.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -228,6 +234,7 @@ The number ``n`` is the number or quantity of the plural object. It will be used
 Returns all the messages (translated text).
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -21,7 +21,7 @@ Description
 
 Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it to be replaced by an **InstancePlaceholder** when running the game, this will not replace the node in the editor. This makes it possible to delay actually loading the scene until calling :ref:`create_instance()<class_InstancePlaceholder_method_create_instance>`. This is useful to avoid loading large scenes all at once by loading parts of it selectively.
 
-The **InstancePlaceholder** does not have a transform. This causes any child nodes to be positioned relatively to the :ref:`Viewport<class_Viewport>` from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
+\ **Note:** Like :ref:`Node<class_Node>`, **InstancePlaceholder** does not have a transform. This causes any child nodes to be positioned relatively to the :ref:`Viewport<class_Viewport>` origin, rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
 
 .. rst-class:: classref-reftable-group
 
@@ -85,6 +85,7 @@ Returns the list of properties that will be applied to the node when :ref:`creat
 If ``with_order`` is ``true``, a key named ``.order`` (note the leading period) is added to the dictionary. This ``.order`` key is an :ref:`Array<class_Array>` of :ref:`String<class_String>` property names specifying the order in which properties will be applied (with index 0 being the first).
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

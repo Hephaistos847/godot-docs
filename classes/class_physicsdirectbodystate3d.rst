@@ -47,6 +47,10 @@ Properties
    +---------------------------------------+-----------------------------------------------------------------------------------------------+
    | :ref:`Vector3<class_Vector3>`         | :ref:`center_of_mass_local<class_PhysicsDirectBodyState3D_property_center_of_mass_local>`     |
    +---------------------------------------+-----------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                 | :ref:`collision_layer<class_PhysicsDirectBodyState3D_property_collision_layer>`               |
+   +---------------------------------------+-----------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                 | :ref:`collision_mask<class_PhysicsDirectBodyState3D_property_collision_mask>`                 |
+   +---------------------------------------+-----------------------------------------------------------------------------------------------+
    | :ref:`Vector3<class_Vector3>`         | :ref:`inverse_inertia<class_PhysicsDirectBodyState3D_property_inverse_inertia>`               |
    +---------------------------------------+-----------------------------------------------------------------------------------------------+
    | :ref:`Basis<class_Basis>`             | :ref:`inverse_inertia_tensor<class_PhysicsDirectBodyState3D_property_inverse_inertia_tensor>` |
@@ -194,6 +198,40 @@ The body's center of mass position in the body's local coordinate system.
 
 ----
 
+.. _class_PhysicsDirectBodyState3D_property_collision_layer:
+
+.. rst-class:: classref-property
+
+:ref:`int<class_int>` **collision_layer** :ref:`🔗<class_PhysicsDirectBodyState3D_property_collision_layer>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_collision_layer**\ (\ value\: :ref:`int<class_int>`\ )
+- :ref:`int<class_int>` **get_collision_layer**\ (\ )
+
+The body's collision layer.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_PhysicsDirectBodyState3D_property_collision_mask:
+
+.. rst-class:: classref-property
+
+:ref:`int<class_int>` **collision_mask** :ref:`🔗<class_PhysicsDirectBodyState3D_property_collision_mask>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_collision_mask**\ (\ value\: :ref:`int<class_int>`\ )
+- :ref:`int<class_int>` **get_collision_mask**\ (\ )
+
+The body's collision mask.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_PhysicsDirectBodyState3D_property_inverse_inertia:
 
 .. rst-class:: classref-property
@@ -271,7 +309,7 @@ The body's linear velocity in units per second.
 
 .. container:: contribute
 
-	There is currently no description for this property. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this property. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -745,6 +783,7 @@ Sets the body's total constant rotational forces applied during each physics upd
 See :ref:`add_constant_torque()<class_PhysicsDirectBodyState3D_method_add_constant_torque>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

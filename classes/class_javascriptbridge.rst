@@ -21,7 +21,7 @@ Description
 
 The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the browser's JavaScript context. This allows interaction with embedding pages or calling third-party JavaScript APIs.
 
-\ **Note:** This singleton can be disabled at build-time to improve security. By default, the JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge singleton enabled. See :doc:`Compiling for the Web <../contributing/development/compiling/compiling_for_web>` in the documentation for more information.
+\ **Note:** This singleton can be disabled at build-time to improve security. By default, the JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge singleton enabled. See :doc:`Compiling for the Web <../engine_details/development/compiling/compiling_for_web>` in the documentation for more information.
 
 .. rst-class:: classref-introduction-group
 
@@ -221,6 +221,7 @@ Performs the live update of the progressive web app. Forcing the new version to 
 \ **Note:** Only relevant when exported as a Progressive Web App and :ref:`pwa_needs_update()<class_JavaScriptBridge_method_pwa_needs_update>` returns ``true``.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

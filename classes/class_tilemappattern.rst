@@ -21,7 +21,7 @@ Description
 
 This resource holds a set of cells to help bulk manipulations of :ref:`TileMap<class_TileMap>`.
 
-A pattern always start at the ``(0,0)`` coordinates and cannot have cells with negative coordinates.
+A pattern always starts at the ``(0, 0)`` coordinates and cannot have cells with negative coordinates.
 
 .. rst-class:: classref-reftable-group
 
@@ -179,6 +179,7 @@ Sets the tile identifiers for the cell at coordinates ``coords``. See :ref:`Tile
 Sets the size of the pattern.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

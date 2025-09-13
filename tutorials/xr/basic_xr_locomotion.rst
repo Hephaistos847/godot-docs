@@ -13,7 +13,7 @@ Because XR supports roomscale tracking you can't simply add your XR setup to a :
 You will run into trouble when the user moves around their physical space and is no longer standing in the center of their room.
 Godot XR Tools embeds the needed logic into a helper node called ``PlayerBody``.
 
-Select your :ref:`XROrigin3D <class_xrorigin3d>` node and click on the ``instantiate Child Scene`` button to add a child scene.
+Select your :ref:`XROrigin3D <class_xrorigin3d>` node and click on the :button:`Instantiate Child Scene` button to add a child scene.
 Select ``addons/godot-xr-tools/player/player_body.tscn`` and add this node.
 
 Adding a floor
@@ -24,7 +24,7 @@ So to prevent our player from infinitely falling down we'll quickly add a floor 
 
 We start by adding a :ref:`StaticBody3D <class_staticbody3d>` node to our root node and we rename this to ``Floor``.
 We add a :ref:`MeshInstance3D <class_meshinstance3d>` node as a child node for our ``Floor``. 
-Then create a new :ref:`PlaneMesh <class_planemesh>` as it's mesh.
+Then create a new :ref:`PlaneMesh <class_planemesh>` as its mesh.
 For now we set the size of the mesh to 100 x 100 meters.
 Next we add a :ref:`CollisionShape3D <class_collisionshape3d>` node as a child node for our ``Floor``.
 Then create a ``BoxShape`` as our shape.
@@ -76,7 +76,7 @@ Godot XR Tools supports this through the teleport function and we will be adding
 Add a new child scene to your left hand :ref:`XRController3D <class_xrcontroller3d>` node by selecting the ``addons/godot-xr-tools/functions/function_teleport.tscn`` scene.
 
 With this scene added the player will be able to teleport around the world by pressing the trigger on the left hand controller, pointing where they want to go, and then releasing the trigger.
-The player can also adjust the orientation by using the left hand controllers joystick.
+The player can also adjust the orientation by using the left hand controller's joystick.
 
 If you've followed all instructions correctly your scene should now look something like this:
 

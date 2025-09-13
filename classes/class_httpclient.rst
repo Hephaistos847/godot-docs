@@ -25,7 +25,7 @@ See the :ref:`HTTPRequest<class_HTTPRequest>` node for a higher-level alternativ
 
 \ **Note:** This client only needs to connect to a host once (see :ref:`connect_to_host()<class_HTTPClient_method_connect_to_host>`) to send multiple requests. Because of this, methods that take URLs usually take just the part after the host instead of the full URL, as the client is already connected to a host. See :ref:`request()<class_HTTPClient_method_request>` for a full example and to get started.
 
-A **HTTPClient** should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports Transport Layer Security (TLS), including server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.
+An **HTTPClient** should be reused between multiple requests or to connect to different hosts instead of creating one client per request. Supports Transport Layer Security (TLS), including server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx something went wrong on the server's side.
 
 For more information on HTTP, see `MDN's documentation on HTTP <https://developer.mozilla.org/en-US/docs/Web/HTTP>`__ (or read `RFC 2616 <https://tools.ietf.org/html/rfc2616>`__ to get it straight from the source).
 
@@ -1012,7 +1012,7 @@ Generates a GET/POST application/x-www-form-urlencoded style query string from a
 
  .. code-tab:: gdscript
 
-    var fields = {"username": "user", "password": "pass"}
+    var fields = { "username": "user", "password": "pass" }
     var query_string = http_client.query_string_from_dict(fields)
     # Returns "username=user&password=pass"
 
@@ -1031,7 +1031,7 @@ Furthermore, if a key has a ``null`` value, only the key itself is added, withou
 
  .. code-tab:: gdscript
 
-    var fields = {"single": 123, "not_valued": null, "multiple": [22, 33, 44]}
+    var fields = { "single": 123, "not_valued": null, "multiple": [22, 33, 44] }
     var query_string = http_client.query_string_from_dict(fields)
     # Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"
 
@@ -1070,11 +1070,11 @@ Reads one chunk from the response.
 
 :ref:`Error<enum_@GlobalScope_Error>` **request**\ (\ method\: :ref:`Method<enum_HTTPClient_Method>`, url\: :ref:`String<class_String>`, headers\: :ref:`PackedStringArray<class_PackedStringArray>`, body\: :ref:`String<class_String>` = ""\ ) :ref:`🔗<class_HTTPClient_method_request>`
 
-Sends a request to the connected host.
+Sends an HTTP request to the connected host with the given ``method``.
 
 The URL parameter is usually just the part after the host, so for ``https://example.com/index.php``, it is ``/index.php``. When sending requests to an HTTP proxy server, it should be an absolute URL. For :ref:`METHOD_OPTIONS<class_HTTPClient_constant_METHOD_OPTIONS>` requests, ``*`` is also allowed. For :ref:`METHOD_CONNECT<class_HTTPClient_constant_METHOD_CONNECT>` requests, it should be the authority component (``host:port``).
 
-Headers are HTTP request headers. For available HTTP methods, see :ref:`Method<enum_HTTPClient_Method>`.
+\ ``headers`` are HTTP request headers.
 
 To create a POST request with query strings to push to the server, do:
 
@@ -1083,7 +1083,7 @@ To create a POST request with query strings to push to the server, do:
 
  .. code-tab:: gdscript
 
-    var fields = {"username" : "user", "password" : "pass"}
+    var fields = { "username": "user", "password": "pass" }
     var query_string = http_client.query_string_from_dict(fields)
     var headers = ["Content-Type: application/x-www-form-urlencoded", "Content-Length: " + str(query_string.length())]
     var result = http_client.request(http_client.METHOD_POST, "/index.php", headers, query_string)
@@ -1109,11 +1109,11 @@ To create a POST request with query strings to push to the server, do:
 
 :ref:`Error<enum_@GlobalScope_Error>` **request_raw**\ (\ method\: :ref:`Method<enum_HTTPClient_Method>`, url\: :ref:`String<class_String>`, headers\: :ref:`PackedStringArray<class_PackedStringArray>`, body\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) :ref:`🔗<class_HTTPClient_method_request_raw>`
 
-Sends a raw request to the connected host.
+Sends a raw HTTP request to the connected host with the given ``method``.
 
 The URL parameter is usually just the part after the host, so for ``https://example.com/index.php``, it is ``/index.php``. When sending requests to an HTTP proxy server, it should be an absolute URL. For :ref:`METHOD_OPTIONS<class_HTTPClient_constant_METHOD_OPTIONS>` requests, ``*`` is also allowed. For :ref:`METHOD_CONNECT<class_HTTPClient_constant_METHOD_CONNECT>` requests, it should be the authority component (``host:port``).
 
-Headers are HTTP request headers. For available HTTP methods, see :ref:`Method<enum_HTTPClient_Method>`.
+\ ``headers`` are HTTP request headers.
 
 Sends the body data raw, as a byte array and does not encode it in any way.
 
@@ -1146,6 +1146,7 @@ Sets the proxy server for HTTPS requests.
 The proxy server is unset if ``host`` is empty or ``port`` is -1.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

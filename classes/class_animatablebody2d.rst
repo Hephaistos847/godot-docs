@@ -23,6 +23,15 @@ An animatable 2D physics body. It can't be moved by external forces or contacts,
 
 When **AnimatableBody2D** is moved, its linear and angular velocity are estimated and used to affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other moving objects.
 
+.. rst-class:: classref-introduction-group
+
+Tutorials
+---------
+
+- :doc:`Physics introduction <../tutorials/physics/physics_introduction>`
+
+- :doc:`Troubleshooting physics issues <../tutorials/physics/troubleshooting_physics_issues>`
+
 .. rst-class:: classref-reftable-group
 
 Properties
@@ -58,6 +67,7 @@ Property Descriptions
 If ``true``, the body's movement will be synchronized to the physics frame. This is useful when animating movement via :ref:`AnimationPlayer<class_AnimationPlayer>`, for example on moving platforms. Do **not** use together with :ref:`PhysicsBody2D.move_and_collide()<class_PhysicsBody2D_method_move_and_collide>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

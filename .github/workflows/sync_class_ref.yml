@@ -17,17 +17,17 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      engine_rev: '4.4'
+      engine_rev: '4.5'
     permissions:
       contents: write
       pull-requests: write
 
     steps:
       - name: Checkout the documentation repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Checkout the engine repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: 'godotengine/godot'
           # Use the appropriate branch for the documentation version.

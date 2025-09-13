@@ -277,6 +277,20 @@ Reference
     - | ``[p]{text}[/p]``
       | ``[p {options}]{text}[/p]``
 
+  * - | **br**
+      | Adds line break in a text, without adding a new paragraph.
+        If used within a list, this won't create a new list item,
+        but will add a line break within the current item instead.
+
+    - ``[br]``
+
+  * - | **hr**
+      | Adds new a horizontal rule to separate content. Supports configuration options,
+        see :ref:`doc_bbcode_in_richtextlabel_hr_options`.
+
+    - | ``[hr]``
+      | ``[hr {options}]``
+
   * - | **center**
       | Makes ``{text}`` horizontally centered.
       | Same as ``[p align=center]``.
@@ -317,8 +331,11 @@ Reference
 
   * - | **hint**
       | Creates a tooltip hint that is displayed when hovering the text with the mouse.
-        Tooltip text should not be quoted (quotes will appear as-is in the tooltip otherwise).
-    - | ``[hint={tooltip text displayed on hover}]{text}[/hint]``
+        While not required, it's recommended to put tooltip text between double or single quotes.
+        Note that it is not possible to escape quotes using ``\"`` or ``\'``. To use
+        single quotes for apostrophes in the hint string, you must use double quotes
+        to surround the string.
+    - | ``[hint="{tooltip text displayed on hover}"]{text}[/hint]``
 
   * - | **img**
       | Inserts an image from the ``{path}`` (can be any valid :ref:`class_Texture2D` resource).
@@ -573,7 +590,9 @@ To handle clicked ``[url]`` tags, connect the ``RichTextLabel`` node's
 :ref:`meta_clicked <class_RichTextLabel_signal_meta_clicked>` signal to a script function.
 
 For example, the following method can be connected to ``meta_clicked`` to open
-clicked URLs using the user's default web browser::
+clicked URLs using the user's default web browser:
+
+::
 
     # This assumes RichTextLabel's `meta_clicked` signal was connected to
     # the function below using the signal connection dialog.
@@ -582,13 +601,59 @@ clicked URLs using the user's default web browser::
         # to avoid script errors at runtime.
         OS.shell_open(str(meta))
 
-For more advanced use cases, it's also possible to store JSON in an ``[url]``
+For more advanced use cases, it's also possible to store JSON in a ``[url]``
 tag's option and parse it in the function that handles the ``meta_clicked`` signal.
 For example:
 
 .. code-block:: none
 
   [url={"example": "value"}]JSON[/url]
+
+
+.. _doc_bbcode_in_richtextlabel_hr_options:
+
+Horizontal rule options
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- **color**
+
+  +-----------+--------------------------------------------+
+  | `Values`  | Color name or color in HEX format          |
+  +-----------+--------------------------------------------+
+  | `Default` | ``Color(1, 1, 1, 1)``                      |
+  +-----------+--------------------------------------------+
+
+  Color tint of the rule (modulation).
+
+- **height**
+
+  +-----------+--------------------------------------------+
+  | `Values`  | Integer number                             |
+  +-----------+--------------------------------------------+
+  | `Default` | ``2``                                      |
+  +-----------+--------------------------------------------+
+
+  Target height of the rule in pixels, add ``%`` to the end of value to specify it as percentages of the control width instead of pixels.
+
+- **width**
+
+  +-----------+--------------------------------------------+
+  | `Values`  | Integer number                             |
+  +-----------+--------------------------------------------+
+  | `Default` | ``90%``                                    |
+  +-----------+--------------------------------------------+
+
+  Target width of the rule in pixels, add ``%`` to the end of value to specify it as percentages of the control width instead of pixels.
+
+- **align**
+
+  +-----------+----------------------------------------------------------------------------------------+
+  | `Values`  | ``left`` (or ``l``), ``center`` (or ``c``), ``right`` (or ``r``)                       |
+  +-----------+----------------------------------------------------------------------------------------+
+  | `Default` | ``left``                                                                               |
+  +-----------+----------------------------------------------------------------------------------------+
+
+  Horizontal alignment.
 
 
 .. _doc_bbcode_in_richtextlabel_image_options:
@@ -624,7 +689,7 @@ Image options
   | `Default` | Inherit                                    |
   +-----------+--------------------------------------------+
 
-  Target width of the image, add ``%`` to the end of value to specify it as percentages of the control width instead of pixels.
+  Target width of the image in pixels, add ``%`` to the end of value to specify it as percentages of the control width instead of pixels.
 
 - **region**
 
@@ -905,9 +970,9 @@ Unordered list bullet
 By default, the ``[ul]`` tag uses the ``U+2022`` "Bullet" Unicode glyph as the
 bullet character. This behavior is similar to web browsers. The bullet character
 can be customized using ``[ul bullet={bullet}]``. If provided, this ``{bullet}``
-parameter must be a *single* character with no enclosing quotes (for example,
-``[bullet=*]``). Additional characters are ignored. The bullet character's
-width does not affect the list's formatting.
+parameter must be a string with no enclosing quotes (for example,
+``[bullet=*]``). You can add trailing spaces after the bullet character
+to increase the spacing between the bullet and the list item text.
 
 See `Bullet (typography) on Wikipedia <https://en.wikipedia.org/wiki/Bullet_(typography)>`__
 for a list of common bullet characters that you can paste directly in the ``bullet`` parameter.
@@ -938,7 +1003,7 @@ All examples below mention the default values for options in the listed tag form
 
 .. note::
 
-    Text effects that move characters' position may result in characters being
+    Text effects that move characters' positions may result in characters being
     clipped by the RichTextLabel node bounds.
 
     You can resolve this by disabling **Control > Layout > Clip Contents** in
@@ -1074,8 +1139,6 @@ This is where the logic of each effect takes place and is called once per glyph
 during the draw phase of text rendering. This passes in a :ref:`class_CharFXTransform`
 object, which holds a few variables to control how the associated glyph is rendered:
 
-- ``identity`` specifies which custom effect is being processed. You should use that for
-  code flow control.
 - ``outline`` is ``true`` if effect is called for drawing text outline.
 - ``range`` tells you how far into a given custom effect block you are in as an
   index.

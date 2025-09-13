@@ -32,15 +32,15 @@ Here's the minimum code required to start an immersive VR session:
 ::
 
     extends Node3D
-    
+
     var webxr_interface
     var vr_supported = false
-    
+
     func _ready():
         # We assume this node has a button as a child.
         # This button is for the user to consent to entering immersive VR mode.
         $Button.pressed.connect(self._on_button_pressed)
-    
+
         webxr_interface = XRServer.find_interface("WebXR")
         if webxr_interface:
             # WebXR uses a lot of asynchronous callbacks, so we connect to various
@@ -49,21 +49,21 @@ Here's the minimum code required to start an immersive VR session:
             webxr_interface.session_started.connect(self._webxr_session_started)
             webxr_interface.session_ended.connect(self._webxr_session_ended)
             webxr_interface.session_failed.connect(self._webxr_session_failed)
-    
+
             # This returns immediately - our _webxr_session_supported() method
             # (which we connected to the "session_supported" signal above) will
             # be called sometime later to let us know if it's supported or not.
             webxr_interface.is_session_supported("immersive-vr")
-    
+
     func _webxr_session_supported(session_mode, supported):
         if session_mode == 'immersive-vr':
             vr_supported = supported
-    
+
     func _on_button_pressed():
         if not vr_supported:
             OS.alert("Your browser doesn't support VR")
             return
-    
+
         # We want an immersive VR session, as opposed to AR ('immersive-ar') or a
         # simple 3DoF viewer ('viewer').
         webxr_interface.session_mode = 'immersive-vr'
@@ -79,7 +79,7 @@ Here's the minimum code required to start an immersive VR session:
         # as an optional feature, it will be enabled if supported.
         webxr_interface.required_features = 'local-floor'
         webxr_interface.optional_features = 'bounded-floor, hand-tracking'
-    
+
         # This will return false if we're unable to even request the session,
         # however, it can still fail asynchronously later in the process, so we
         # only know if it's really succeeded or failed when our
@@ -87,7 +87,7 @@ Here's the minimum code required to start an immersive VR session:
         if not webxr_interface.initialize():
             OS.alert("Failed to initialize")
             return
-    
+
     func _webxr_session_started():
         $Button.visible = false
         # This tells Godot to start rendering to the headset.
@@ -99,13 +99,13 @@ Here's the minimum code required to start an immersive VR session:
         # This will be the list of features that were successfully enabled
         # (except on browsers that don't support this property).
         print("Enabled features: ", webxr_interface.enabled_features)
-    
+
     func _webxr_session_ended():
         $Button.visible = true
         # If the user exits immersive mode, then we tell Godot to render to the web
         # page again.
         get_viewport().use_xr = false
-    
+
     func _webxr_session_failed(message):
         OS.alert("Failed to initialize: " + message)
 
@@ -448,7 +448,7 @@ If a user's browser or device doesn't support one of the given features, initial
 
 This doesn't have any effect on the interface when already initialized.
 
-Possible values come from `WebXR's XRReferenceSpaceType <https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType>`__, or include other features like ``"hand-tracking"`` to enable hand tracking.
+See the MDN documentation on `WebXR's session features <https://developer.mozilla.org/en-US/docs/Web/API/XRSystem/requestSession#session_features>`__ for a list of possible values.
 
 .. rst-class:: classref-item-separator
 
@@ -485,7 +485,7 @@ Possible values come from `WebXR's XRReferenceSpaceType <https://developer.mozil
 
 A comma-seperated list of reference space types used by :ref:`XRInterface.initialize()<class_XRInterface_method_initialize>` when setting up the WebXR session.
 
-The reference space types are requested in order, and the first one supported by the users device or browser will be used. The :ref:`reference_space_type<class_WebXRInterface_property_reference_space_type>` property contains the reference space type that was ultimately selected.
+The reference space types are requested in order, and the first one supported by the user's device or browser will be used. The :ref:`reference_space_type<class_WebXRInterface_property_reference_space_type>` property contains the reference space type that was ultimately selected.
 
 This doesn't have any effect on the interface when already initialized.
 
@@ -512,7 +512,7 @@ If a user's browser or device doesn't support one of the given features, initial
 
 This doesn't have any effect on the interface when already initialized.
 
-Possible values come from `WebXR's XRReferenceSpaceType <https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType>`__, or include other features like ``"hand-tracking"`` to enable hand tracking.
+See the MDN documentation on `WebXR's session features <https://developer.mozilla.org/en-US/docs/Web/API/XRSystem/requestSession#session_features>`__ for a list of possible values.
 
 .. rst-class:: classref-item-separator
 
@@ -665,6 +665,7 @@ This method returns nothing, instead it emits the :ref:`session_supported<class_
 Sets the display refresh rate for the current HMD. Not supported on all HMDs and browsers. It won't take effect right away until after :ref:`display_refresh_rate_changed<class_WebXRInterface_signal_display_refresh_rate_changed>` is emitted.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

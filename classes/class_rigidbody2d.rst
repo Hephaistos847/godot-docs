@@ -27,14 +27,20 @@ The body's behavior can be adjusted via :ref:`lock_rotation<class_RigidBody2D_pr
 
 A rigid body will always maintain its shape and size, even when forces are applied to it. It is useful for objects that can be interacted with in an environment, such as a tree that can be knocked over or a stack of crates that can be pushed around.
 
+If you need to directly affect the body, prefer :ref:`_integrate_forces()<class_RigidBody2D_private_method__integrate_forces>` as it allows you to directly access the physics state.
+
 If you need to override the default physics behavior, you can write a custom force integration function. See :ref:`custom_integrator<class_RigidBody2D_property_custom_integrator>`.
 
-\ **Note:** Changing the 2D transform or :ref:`linear_velocity<class_RigidBody2D_property_linear_velocity>` of a **RigidBody2D** very often may lead to some unpredictable behaviors. If you need to directly affect the body, prefer :ref:`_integrate_forces()<class_RigidBody2D_private_method__integrate_forces>` as it allows you to directly access the physics state.
+\ **Note:** Changing the 2D transform or :ref:`linear_velocity<class_RigidBody2D_property_linear_velocity>` of a **RigidBody2D** very often may lead to some unpredictable behaviors. This also happens when a **RigidBody2D** is the descendant of a constantly moving node, like another **RigidBody2D**, as that will cause its global transform to be set whenever its ancestor moves.
 
 .. rst-class:: classref-introduction-group
 
 Tutorials
 ---------
+
+- :doc:`Physics introduction <../tutorials/physics/physics_introduction>`
+
+- :doc:`Troubleshooting physics issues <../tutorials/physics/troubleshooting_physics_issues>`
 
 - `2D Physics Platformer Demo <https://godotengine.org/asset-library/asset/2725>`__
 
@@ -375,7 +381,7 @@ See :ref:`ProjectSettings.physics/2d/default_angular_damp<class_ProjectSettings_
 - |void| **set_angular_damp_mode**\ (\ value\: :ref:`DampMode<enum_RigidBody2D_DampMode>`\ )
 - :ref:`DampMode<enum_RigidBody2D_DampMode>` **get_angular_damp_mode**\ (\ )
 
-Defines how :ref:`angular_damp<class_RigidBody2D_property_angular_damp>` is applied. See :ref:`DampMode<enum_RigidBody2D_DampMode>` for possible values.
+Defines how :ref:`angular_damp<class_RigidBody2D_property_angular_damp>` is applied.
 
 .. rst-class:: classref-item-separator
 
@@ -428,7 +434,7 @@ If ``true``, the body can enter sleep mode when there is no movement. See :ref:`
 
 The body's custom center of mass, relative to the body's origin position, when :ref:`center_of_mass_mode<class_RigidBody2D_property_center_of_mass_mode>` is set to :ref:`CENTER_OF_MASS_MODE_CUSTOM<class_RigidBody2D_constant_CENTER_OF_MASS_MODE_CUSTOM>`. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
 
-When :ref:`center_of_mass_mode<class_RigidBody2D_property_center_of_mass_mode>` is set to :ref:`CENTER_OF_MASS_MODE_AUTO<class_RigidBody2D_constant_CENTER_OF_MASS_MODE_AUTO>` (default value), the center of mass is automatically computed.
+When :ref:`center_of_mass_mode<class_RigidBody2D_property_center_of_mass_mode>` is set to :ref:`CENTER_OF_MASS_MODE_AUTO<class_RigidBody2D_constant_CENTER_OF_MASS_MODE_AUTO>` (default value), the center of mass is automatically determined, but this does not update the value of :ref:`center_of_mass<class_RigidBody2D_property_center_of_mass>`.
 
 .. rst-class:: classref-item-separator
 
@@ -445,7 +451,7 @@ When :ref:`center_of_mass_mode<class_RigidBody2D_property_center_of_mass_mode>` 
 - |void| **set_center_of_mass_mode**\ (\ value\: :ref:`CenterOfMassMode<enum_RigidBody2D_CenterOfMassMode>`\ )
 - :ref:`CenterOfMassMode<enum_RigidBody2D_CenterOfMassMode>` **get_center_of_mass_mode**\ (\ )
 
-Defines the way the body's center of mass is set. See :ref:`CenterOfMassMode<enum_RigidBody2D_CenterOfMassMode>` for possible values.
+Defines the way the body's center of mass is set.
 
 .. rst-class:: classref-item-separator
 
@@ -521,7 +527,7 @@ If ``true``, the RigidBody2D will emit signals when it collides with another bod
 
 Continuous collision detection mode.
 
-Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See :ref:`CCDMode<enum_RigidBody2D_CCDMode>` for details.
+Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available.
 
 .. rst-class:: classref-item-separator
 
@@ -578,7 +584,7 @@ For a body that is always frozen, use :ref:`StaticBody2D<class_StaticBody2D>` or
 - |void| **set_freeze_mode**\ (\ value\: :ref:`FreezeMode<enum_RigidBody2D_FreezeMode>`\ )
 - :ref:`FreezeMode<enum_RigidBody2D_FreezeMode>` **get_freeze_mode**\ (\ )
 
-The body's freeze mode. Can be used to set the body's behavior when :ref:`freeze<class_RigidBody2D_property_freeze>` is enabled. See :ref:`FreezeMode<enum_RigidBody2D_FreezeMode>` for possible values.
+The body's freeze mode. Can be used to set the body's behavior when :ref:`freeze<class_RigidBody2D_property_freeze>` is enabled.
 
 For a body that is always frozen, use :ref:`StaticBody2D<class_StaticBody2D>` or :ref:`AnimatableBody2D<class_AnimatableBody2D>` instead.
 
@@ -626,19 +632,19 @@ If set to ``0``, inertia is automatically computed (default value).
  .. code-tab:: gdscript
 
     @onready var ball = $Ball
-    
+
     func get_ball_inertia():
         return 1.0 / PhysicsServer2D.body_get_direct_state(ball.get_rid()).inverse_inertia
 
  .. code-tab:: csharp
 
     private RigidBody2D _ball;
-    
+
     public override void _Ready()
     {
         _ball = GetNode<RigidBody2D>("Ball");
     }
-    
+
     private float GetBallInertia()
     {
         return 1.0f / PhysicsServer2D.BodyGetDirectState(_ball.GetRid()).InverseInertia;
@@ -680,7 +686,7 @@ See :ref:`ProjectSettings.physics/2d/default_linear_damp<class_ProjectSettings_p
 - |void| **set_linear_damp_mode**\ (\ value\: :ref:`DampMode<enum_RigidBody2D_DampMode>`\ )
 - :ref:`DampMode<enum_RigidBody2D_DampMode>` **get_linear_damp_mode**\ (\ )
 
-Defines how :ref:`linear_damp<class_RigidBody2D_property_linear_damp>` is applied. See :ref:`DampMode<enum_RigidBody2D_DampMode>` for possible values.
+Defines how :ref:`linear_damp<class_RigidBody2D_property_linear_damp>` is applied.
 
 .. rst-class:: classref-item-separator
 
@@ -976,6 +982,7 @@ Returns the number of contacts this body has with other bodies. By default, this
 Sets the body's velocity on the given axis. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

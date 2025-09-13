@@ -17,7 +17,7 @@ and binding these to the actual inputs and outputs on your XR devices.
 As the XR action map is currently part of the OpenXR module, OpenXR needs to be enabled
 in your project settings to expose it:
 
-.. image:: img/openxr_settings.webp
+.. image:: img/openxr_enabled.webp
 
 You will then find the XR Action Map interface in the bottom of the screen:
 
@@ -122,7 +122,7 @@ a single action set and to not over-engineer things.
 
 For our walkthrough in this document we will thus create a single action set
 called ``my_first_action_set``.
-We do this by pressing the ``Add action set`` button:
+We do this by pressing the :button:`Add action set` button:
 
 .. image:: img/xr_my_first_action_set.webp
 
@@ -150,7 +150,7 @@ The columns in our table are as follows:
   * - 3
     - 0
     - This is the priority of the action set.
-      If multiple active action sets have actions bound to the same controllers inputs or
+      If multiple active action sets have actions bound to the same controller's inputs or
       outputs, the action set with the highest priority value will determine the action
       that is updated.
 
@@ -480,6 +480,8 @@ to use bindings from one of the more popular systems as a fallback first.
   If you are able to test your game using a Meta Rift or Quest and add this profile
   there is a high probability your game will work with other headsets.
 
+.. _doc_binding_modifiers:
+
 Binding Modifiers
 -----------------
 
@@ -514,7 +516,7 @@ through the modifier button on the right side of the interaction profile editor.
 
 .. image:: img/openxr_ip_binding_modifier.webp
 
-You can add a new modifier by pressing the ``Add binding modifier`` button.
+You can add a new modifier by pressing the :button:`Add binding modifier` button.
 
 .. warning::
   As Godot doesn't know which controllers and runtimes support a modifier,
@@ -570,7 +572,7 @@ These settings are used as follows:
   * ``On Haptic`` lets us define a haptic output that is automatically activated
     when an action becomes pressed.
   * ``Off Haptic`` lets us define a haptic output that is automatically activated
-    when a action is released.
+    when an action is released.
 
 
 Binding modifiers on individual bindings
@@ -581,7 +583,7 @@ the binding modifier button next to action attached to an input:
 
 .. image:: img/openxr_action_binding_modifier.webp
 
-You can add a new modifier by pressing the ``Add binding modifier`` button.
+You can add a new modifier by pressing the :button:`Add binding modifier` button.
 
 .. warning::
   As Godot doesn't know which inputs on each runtime support a modifier,

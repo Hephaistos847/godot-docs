@@ -103,7 +103,7 @@ Method Descriptions
 
 .. container:: contribute
 
-	There is currently no description for this method. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this method. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 .. rst-class:: classref-item-separator
 
@@ -390,6 +390,7 @@ Creates an unshaded material with its variants (selected and/or editable) and ad
 Gets material from the internal list of materials. If an :ref:`EditorNode3DGizmo<class_EditorNode3DGizmo>` is provided, it will try to get the corresponding variant (selected and/or editable).
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

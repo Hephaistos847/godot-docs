@@ -313,7 +313,9 @@ If multiple cameras are in the scene, one will always be made current. For examp
 - |void| **set_doppler_tracking**\ (\ value\: :ref:`DopplerTracking<enum_Camera3D_DopplerTracking>`\ )
 - :ref:`DopplerTracking<enum_Camera3D_DopplerTracking>` **get_doppler_tracking**\ (\ )
 
-If not :ref:`DOPPLER_TRACKING_DISABLED<class_Camera3D_constant_DOPPLER_TRACKING_DISABLED>`, this camera will simulate the `Doppler effect <https://en.wikipedia.org/wiki/Doppler_effect>`__ for objects changed in particular ``_process`` methods. See :ref:`DopplerTracking<enum_Camera3D_DopplerTracking>` for possible values.
+If not :ref:`DOPPLER_TRACKING_DISABLED<class_Camera3D_constant_DOPPLER_TRACKING_DISABLED>`, this camera will simulate the `Doppler effect <https://en.wikipedia.org/wiki/Doppler_effect>`__ for objects changed in particular ``_process`` methods.
+
+\ **Note:** The Doppler effect will only be heard on :ref:`AudioStreamPlayer3D<class_AudioStreamPlayer3D>`\ s if :ref:`AudioStreamPlayer3D.doppler_tracking<class_AudioStreamPlayer3D_property_doppler_tracking>` is not set to :ref:`AudioStreamPlayer3D.DOPPLER_TRACKING_DISABLED<class_AudioStreamPlayer3D_constant_DOPPLER_TRACKING_DISABLED>`.
 
 .. rst-class:: classref-item-separator
 
@@ -706,7 +708,9 @@ Sets the camera projection to frustum mode (see :ref:`PROJECTION_FRUSTUM<class_C
 
 |void| **set_orthogonal**\ (\ size\: :ref:`float<class_float>`, z_near\: :ref:`float<class_float>`, z_far\: :ref:`float<class_float>`\ ) :ref:`🔗<class_Camera3D_method_set_orthogonal>`
 
-Sets the camera projection to orthogonal mode (see :ref:`PROJECTION_ORTHOGONAL<class_Camera3D_constant_PROJECTION_ORTHOGONAL>`), by specifying a ``size``, and the ``z_near`` and ``z_far`` clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
+Sets the camera projection to orthogonal mode (see :ref:`PROJECTION_ORTHOGONAL<class_Camera3D_constant_PROJECTION_ORTHOGONAL>`), by specifying a ``size``, and the ``z_near`` and ``z_far`` clip planes in world space units.
+
+As a hint, 3D games that look 2D often use this projection, with ``size`` specified in pixels.
 
 .. rst-class:: classref-item-separator
 
@@ -742,6 +746,7 @@ Returns the 2D coordinate in the :ref:`Viewport<class_Viewport>` rectangle that 
     control.position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -136,7 +136,7 @@ If a runnable web export template is available, a button appears between the
 *Stop scene* and *Play edited Scene* buttons in the editor to quickly open the
 game in the default browser for testing.
 
-If your project uses GDExtension **Extension Support** needs to be enabled.
+If your project uses GDExtension, **Extension Support** needs to be enabled.
 
 If you plan to use :ref:`VRAM compression <doc_importing_images>` make sure that
 **VRAM Texture Compression** is enabled for the targeted platforms (enabling
@@ -149,6 +149,13 @@ the default HTML page. See :ref:`doc_customizing_html5_shell`.
 **Head Include** is appended into the ``<head>`` element of the generated
 HTML page. This allows to, for example, load webfonts and third-party
 JavaScript APIs, include CSS, or run JavaScript code.
+
+The window size will automatically match the browser window size by default.
+If you want to use a fixed size instead regardless of the browser window size,
+change **Canvas Resize Policy** to **None**. This allows controlling the window
+size with custom JavaScript code in the HTML shell. You can also set it to
+**Project** to make it behave closer to a native export, according to the
+:ref:`project settings <doc_multiple_resolutions>`.
 
 .. important:: Each project must generate their own HTML file. On export,
                several text placeholders are replaced in the generated HTML
@@ -445,6 +452,46 @@ the export menu.
      - Environment variable
    * - Encryption / Encryption Key
      - ``GODOT_SCRIPT_ENCRYPTION_KEY``
+
+.. _doc_exporting_for_web_troubleshooting:
+
+Troubleshooting
+---------------
+
+Running the export locally shows another project instead
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you use one-click deploy in multiple projects, you may notice that one
+of the projects you've previously deployed is shown instead of the project
+you're currently working on. This is due to service worker caching which
+currently lacks an automated cache busting mechanism.
+
+As a workaround, you can manually unregister the current service worker
+so that the cache is reset. This also allows a new service worker to be registered.
+In Chromium-based browsers, open the Developer Tools by pressing
+:kbd:`F12` or :kbd:`Ctrl + Shift + I` (:kbd:`Cmd + Option + I` on macOS),
+then click on the Application tab in DevTools (it may be hidden behind a chevron
+icon if the devtools pane is narrow). You can either check
+:button:`Update on reload` and reload the page, or click :button:`Unregister`
+next to the service worker that is currently registered, then reload the page.
+
+.. figure:: img/exporting_for_web_reset_unregister_service_worker_chromium.webp
+   :align: center
+   :alt: Unregistering the service worker in Chromium-based browsers' DevTools
+
+   Unregistering the service worker in Chromium-based browsers' DevTools
+
+The procedure is similar in Firefox. Open developer tools by pressing
+:kbd:`F12` or :kbd:`Ctrl + Shift + I` (:kbd:`Cmd + Option + I` on macOS),
+click on the Application tab in DevTools (it may be hidden behind a chevron
+icon if the devtools pane is narrow). Click :button:`Unregister` next to the
+service worker that is currently registered, then reload the page.
+
+.. figure:: img/exporting_for_web_reset_unregister_service_worker_firefox.webp
+   :align: center
+   :alt: Unregistering the service worker in Firefox's DevTools
+
+   Unregistering the service worker in Firefox's DevTools
 
 Export options
 --------------

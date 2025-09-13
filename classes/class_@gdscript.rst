@@ -41,7 +41,7 @@ Methods
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                              | :ref:`assert<class_@GDScript_method_assert>`\ (\ condition\: :ref:`bool<class_bool>`, message\: :ref:`String<class_String>` = ""\ )                                      |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`         | :ref:`char<class_@GDScript_method_char>`\ (\ char\: :ref:`int<class_int>`\ )                                                                                             |
+   | :ref:`String<class_String>`         | :ref:`char<class_@GDScript_method_char>`\ (\ code\: :ref:`int<class_int>`\ )                                                                                             |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Variant<class_Variant>`       | :ref:`convert<class_@GDScript_method_convert>`\ (\ what\: :ref:`Variant<class_Variant>`, type\: :ref:`Variant.Type<enum_@GlobalScope_Variant.Type>`\ )                   |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -56,6 +56,8 @@ Methods
    | :ref:`int<class_int>`               | :ref:`len<class_@GDScript_method_len>`\ (\ var\: :ref:`Variant<class_Variant>`\ )                                                                                        |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Resource<class_Resource>`     | :ref:`load<class_@GDScript_method_load>`\ (\ path\: :ref:`String<class_String>`\ )                                                                                       |
+   +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`               | :ref:`ord<class_@GDScript_method_ord>`\ (\ char\: :ref:`String<class_String>`\ )                                                                                         |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Resource<class_Resource>`     | :ref:`preload<class_@GDScript_method_preload>`\ (\ path\: :ref:`String<class_String>`\ )                                                                                 |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -109,7 +111,9 @@ Positive floating-point infinity. This is the result of floating-point division 
 
 **NAN** = ``nan`` :ref:`🔗<class_@GDScript_constant_NAN>`
 
-"Not a Number", an invalid floating-point value. :ref:`NAN<class_@GDScript_constant_NAN>` has special properties, including that ``!=`` always returns ``true``, while other comparison operators always return ``false``. This is true even when comparing with itself (``NAN == NAN`` returns ``false`` and ``NAN != NAN`` returns ``true``). It is returned by some invalid operations, such as dividing floating-point ``0.0`` by ``0.0``.
+"Not a Number", an invalid floating-point value. It is returned by some invalid operations, such as dividing floating-point ``0.0`` by ``0.0``.
+
+\ :ref:`NAN<class_@GDScript_constant_NAN>` has special properties, including that ``!=`` always returns ``true``, while other comparison operators always return ``false``. This is true even when comparing with itself (``NAN == NAN`` returns ``false`` and ``NAN != NAN`` returns ``true``). Due to this, you must use :ref:`@GlobalScope.is_nan()<class_@GlobalScope_method_is_nan>` to check whether a number is equal to :ref:`NAN<class_@GDScript_constant_NAN>`.
 
 \ **Warning:** "Not a Number" is only a concept with floating-point numbers, and has no equivalent for integers. Dividing an integer ``0`` by ``0`` will not result in :ref:`NAN<class_@GDScript_constant_NAN>` and will result in a run-time error instead.
 
@@ -119,6 +123,37 @@ Positive floating-point infinity. This is the result of floating-point division 
 
 Annotations
 -----------
+
+.. _class_@GDScript_annotation_@abstract:
+
+.. rst-class:: classref-annotation
+
+**@abstract**\ (\ ) :ref:`🔗<class_@GDScript_annotation_@abstract>`
+
+Marks a class or a method as abstract.
+
+An abstract class is a class that cannot be instantiated directly. Instead, it is meant to be inherited by other classes. Attempting to instantiate an abstract class will result in an error.
+
+An abstract method is a method that has no implementation. Therefore, a newline or a semicolon is expected after the function header. This defines a contract that inheriting classes must conform to, because the method signature must be compatible when overriding.
+
+Inheriting classes must either provide implementations for all abstract methods, or the inheriting class must be marked as abstract. If a class has at least one abstract method (either its own or an unimplemented inherited one), then it must also be marked as abstract. However, the reverse is not true: an abstract class is allowed to have no abstract methods.
+
+::
+
+    @abstract class Shape:
+        @abstract func draw()
+
+    class Circle extends Shape:
+        func draw():
+            print("Drawing a circle.")
+
+    class Square extends Shape:
+        func draw():
+            print("Drawing a square.")
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_@GDScript_annotation_@export:
 
@@ -131,27 +166,27 @@ Mark the following property as exported (editable in the Inspector dock and save
 ::
 
     extends Node
-    
+
     enum Direction {LEFT, RIGHT, UP, DOWN}
-    
+
     # Built-in types.
     @export var string = ""
     @export var int_number = 5
     @export var float_number: float = 5
-    
+
     # Enums.
     @export var type: Variant.Type
     @export var format: Image.Format
     @export var direction: Direction
-    
+
     # Resources.
     @export var image: Image
     @export var custom_resource: CustomResource
-    
+
     # Nodes.
     @export var node: Node
     @export var custom_node: CustomNode
-    
+
     # Typed arrays.
     @export var int_array: Array[int]
     @export var direction_array: Array[Direction]
@@ -259,7 +294,7 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_ENUM<class_@GlobalScope_constant_PROPE
     @export_enum("Warrior", "Magician", "Thief") var character_class: int
     @export_enum("Slow:30", "Average:60", "Very Fast:200") var character_speed: int
     @export_enum("Rebecca", "Mary", "Leah") var character_name: String
-    
+
     @export_enum("Sword", "Spear", "Mace") var character_items: Array[int]
     @export_enum("double_jump", "climb", "dash") var character_skills: Array[String]
 
@@ -275,7 +310,7 @@ If you want to use named GDScript enums, then use :ref:`@export<class_@GDScript_
 
     enum CharacterName {REBECCA, MARY, LEAH}
     @export var character_name: CharacterName
-    
+
     enum CharacterItem {SWORD, SPEAR, MACE}
     @export var character_items: Array[CharacterItem]
 
@@ -321,6 +356,20 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_FILE<class_@GlobalScope_constant_PROPE
     @export_file var sound_effect_path: String
     @export_file("*.txt") var notes_path: String
     @export_file var level_paths: Array[String]
+
+\ **Note:** The file will be stored and referenced as UID, if available. This ensures that the reference is valid even when the file is moved. You can use :ref:`ResourceUID<class_ResourceUID>` methods to convert it to path.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_@GDScript_annotation_@export_file_path:
+
+.. rst-class:: classref-annotation
+
+**@export_file_path**\ (\ filter\: :ref:`String<class_String>` = "", ...\ ) |vararg| :ref:`🔗<class_@GDScript_annotation_@export_file_path>`
+
+Same as :ref:`@export_file<class_@GDScript_annotation_@export_file>`, except the file will be stored as a raw path. This means that it may become invalid when the file is moved. If you are exporting a :ref:`Resource<class_Resource>` path, consider using :ref:`@export_file<class_@GDScript_annotation_@export_file>` instead.
 
 .. rst-class:: classref-item-separator
 
@@ -564,11 +613,11 @@ See also :ref:`@GlobalScope.PROPERTY_USAGE_GROUP<class_@GlobalScope_constant_PRO
     @export_group("Racer Properties")
     @export var nickname = "Nick"
     @export var age = 26
-    
+
     @export_group("Car Properties", "car_")
     @export var car_label = "Speedy"
     @export var car_number = 3
-    
+
     @export_group("", "")
     @export var ungrouped_number = 3
 
@@ -655,10 +704,10 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_RANGE<class_@GlobalScope_constant_PROP
     @export_range(-10, 20) var number
     @export_range(-10, 20, 0.2) var number: float
     @export_range(0, 20) var numbers: Array[float]
-    
+
     @export_range(0, 100, 1, "or_greater") var power_percent
     @export_range(0, 100, 1, "or_greater", "or_less") var health_delta
-    
+
     @export_range(-180, 180, 0.001, "radians_as_degrees") var angle_radians
     @export_range(0, 360, 1, "degrees") var angle_degrees
     @export_range(-8, 8, 2, "suffix:px") var target_offset
@@ -700,7 +749,7 @@ See also :ref:`@GlobalScope.PROPERTY_USAGE_SUBGROUP<class_@GlobalScope_constant_
     @export_group("Racer Properties")
     @export var nickname = "Nick"
     @export var age = 26
-    
+
     @export_subgroup("Car Properties", "car_")
     @export var car_label = "Speedy"
     @export var car_number = 3
@@ -742,14 +791,14 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_TOOL_BUTTON<class_@GlobalScope_constan
 
     @tool
     extends Sprite2D
-    
+
     @export_tool_button("Hello") var hello_action = hello
     @export_tool_button("Randomize the color!", "ColorRect")
     var randomize_color_action = randomize_color
-    
+
     func hello():
         print("Hello world!")
-    
+
     func randomize_color():
         var undo_redo = EditorInterface.get_editor_undo_redo()
         undo_redo.create_action("Randomized Sprite2D Color")
@@ -831,12 +880,14 @@ The order of ``mode``, ``sync`` and ``transfer_mode`` does not matter, but value
 
     @rpc
     func fn(): pass
-    
+
     @rpc("any_peer", "unreliable_ordered")
     func fn_update_pos(): pass
-    
+
     @rpc("authority", "call_remote", "unreliable", 0) # Equivalent to @rpc
     func fn_default(): pass
+
+\ **Note:** Methods annotated with :ref:`@rpc<class_@GDScript_annotation_@rpc>` cannot receive objects which define required parameters in :ref:`Object._init()<class_Object_private_method__init>`. See :ref:`Object._init()<class_Object_private_method__init>` for more details.
 
 .. rst-class:: classref-item-separator
 
@@ -997,15 +1048,16 @@ An optional ``message`` can be shown in addition to the generic "Assertion faile
 
 .. rst-class:: classref-method
 
-:ref:`String<class_String>` **char**\ (\ char\: :ref:`int<class_int>`\ ) :ref:`🔗<class_@GDScript_method_char>`
+:ref:`String<class_String>` **char**\ (\ code\: :ref:`int<class_int>`\ ) :ref:`🔗<class_@GDScript_method_char>`
 
-Returns a single character (as a :ref:`String<class_String>`) of the given Unicode code point (which is compatible with ASCII code).
+Returns a single character (as a :ref:`String<class_String>` of length 1) of the given Unicode code point ``code``.
 
 ::
 
-    var upper = char(65)      # upper is "A"
-    var lower = char(65 + 32) # lower is "a"
-    var euro = char(8364)     # euro is "€"
+    print(char(65))     # Prints "A"
+    print(char(129302)) # Prints "🤖" (robot face emoji)
+
+This is the inverse of :ref:`ord()<class_@GDScript_method_ord>`. See also :ref:`String.chr()<class_String_method_chr>` and :ref:`String.unicode_at()<class_String_method_unicode_at>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1025,7 +1077,7 @@ Converts ``what`` to ``type`` in the best way possible. The ``type`` uses the :r
 
     var a = [4, 2.5, 1.2]
     print(a is Array) # Prints true
-    
+
     var b = convert(a, TYPE_PACKED_BYTE_ARRAY)
     print(b)          # Prints [4, 2, 1]
     print(b is Array) # Prints false
@@ -1054,16 +1106,16 @@ Converts a ``dictionary`` (created with :ref:`inst_to_dict()<class_@GDScript_met
 
 :ref:`Array<class_Array>` **get_stack**\ (\ ) :ref:`🔗<class_@GDScript_method_get_stack>`
 
-Returns an array of dictionaries representing the current call stack. See also :ref:`print_stack()<class_@GDScript_method_print_stack>`.
+Returns an array of dictionaries representing the current call stack.
 
 ::
 
     func _ready():
         foo()
-    
+
     func foo():
         bar()
-    
+
     func bar():
         print(get_stack())
 
@@ -1073,9 +1125,9 @@ Starting from ``_ready()``, ``bar()`` would print:
 
     [{function:bar, line:12, source:res://script.gd}, {function:foo, line:9, source:res://script.gd}, {function:_ready, line:6, source:res://script.gd}]
 
-\ **Note:** This function only works if the running instance is connected to a debugging server (i.e. an editor instance). :ref:`get_stack()<class_@GDScript_method_get_stack>` will not work in projects exported in release mode, or in projects exported in debug mode if not connected to a debugging server.
+See also :ref:`print_debug()<class_@GDScript_method_print_debug>`, :ref:`print_stack()<class_@GDScript_method_print_stack>`, and :ref:`Engine.capture_script_backtraces()<class_Engine_method_capture_script_backtraces>`.
 
-\ **Note:** Calling this function from a :ref:`Thread<class_Thread>` is not supported. Doing so will return an empty array.
+\ **Note:** By default, backtraces are only available in editor builds and debug builds. To enable them for release builds as well, you need to enable :ref:`ProjectSettings.debug/settings/gdscript/always_track_call_stacks<class_ProjectSettings_property_debug/settings/gdscript/always_track_call_stacks>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1089,7 +1141,7 @@ Starting from ``_ready()``, ``bar()`` would print:
 
 **Deprecated:** Consider using :ref:`JSON.from_native()<class_JSON_method_from_native>` or :ref:`Object.get_property_list()<class_Object_method_get_property_list>` instead.
 
-Returns the passed ``instance`` converted to a Dictionary. Can be useful for serializing.
+Returns the passed ``instance`` converted to a :ref:`Dictionary<class_Dictionary>`. Can be useful for serializing.
 
 ::
 
@@ -1128,7 +1180,7 @@ Returns ``true`` if ``value`` is an instance of ``type``. The ``type`` value mus
 
 - A :ref:`Script<class_Script>` (you can use any class, including inner one).
 
-Unlike the right operand of the ``is`` operator, ``type`` can be a non-constant value. The ``is`` operator supports more features (such as typed arrays). Use the operator instead of this method if you do not need dynamic type checking.
+Unlike the right operand of the ``is`` operator, ``type`` can be a non-constant value. The ``is`` operator supports more features (such as typed arrays). Use the operator instead of this method if you do not need to check the type dynamically.
 
 \ **Examples:**\ 
 
@@ -1159,7 +1211,7 @@ Returns the length of the given Variant ``var``. The length can be the character
 
     var a = [1, 2, 3, 4]
     len(a) # Returns 4
-    
+
     var b = "Hello!"
     len(b) # Returns 6
 
@@ -1189,6 +1241,25 @@ This function is a simplified version of :ref:`ResourceLoader.load()<class_Resou
 \ **Note:** Files have to be imported into the engine first to load them using this function. If you want to load :ref:`Image<class_Image>`\ s at run-time, you may use :ref:`Image.load()<class_Image_method_load>`. If you want to import audio files, you can use the snippet described in :ref:`AudioStreamMP3.data<class_AudioStreamMP3_property_data>`.
 
 \ **Note:** If :ref:`ProjectSettings.editor/export/convert_text_resources_to_binary<class_ProjectSettings_property_editor/export/convert_text_resources_to_binary>` is ``true``, :ref:`load()<class_@GDScript_method_load>` will not be able to read converted files in an exported project. If you rely on run-time loading of files present within the PCK, set :ref:`ProjectSettings.editor/export/convert_text_resources_to_binary<class_ProjectSettings_property_editor/export/convert_text_resources_to_binary>` to ``false``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_@GDScript_method_ord:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **ord**\ (\ char\: :ref:`String<class_String>`\ ) :ref:`🔗<class_@GDScript_method_ord>`
+
+Returns an integer representing the Unicode code point of the given character ``char``, which should be a string of length 1.
+
+::
+
+    print(ord("A")) # Prints 65
+    print(ord("🤖")) # Prints 129302
+
+This is the inverse of :ref:`char()<class_@GDScript_method_char>`. See also :ref:`String.chr()<class_String_method_chr>` and :ref:`String.unicode_at()<class_String_method_unicode_at>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1230,7 +1301,9 @@ The output in the console may look like the following:
     Test print
     At: res://test.gd:15:_process()
 
-\ **Note:** Calling this function from a :ref:`Thread<class_Thread>` is not supported. Doing so will instead print the thread ID.
+See also :ref:`print_stack()<class_@GDScript_method_print_stack>`, :ref:`get_stack()<class_@GDScript_method_get_stack>`, and :ref:`Engine.capture_script_backtraces()<class_Engine_method_capture_script_backtraces>`.
+
+\ **Note:** By default, backtraces are only available in editor builds and debug builds. To enable them for release builds as well, you need to enable :ref:`ProjectSettings.debug/settings/gdscript/always_track_call_stacks<class_ProjectSettings_property_debug/settings/gdscript/always_track_call_stacks>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1242,7 +1315,7 @@ The output in the console may look like the following:
 
 |void| **print_stack**\ (\ ) :ref:`🔗<class_@GDScript_method_print_stack>`
 
-Prints a stack trace at the current code location. See also :ref:`get_stack()<class_@GDScript_method_get_stack>`.
+Prints a stack trace at the current code location.
 
 The output in the console may look like the following:
 
@@ -1250,9 +1323,9 @@ The output in the console may look like the following:
 
     Frame 0 - res://test.gd:16 in function '_process'
 
-\ **Note:** This function only works if the running instance is connected to a debugging server (i.e. an editor instance). :ref:`print_stack()<class_@GDScript_method_print_stack>` will not work in projects exported in release mode, or in projects exported in debug mode if not connected to a debugging server.
+See also :ref:`print_debug()<class_@GDScript_method_print_debug>`, :ref:`get_stack()<class_@GDScript_method_get_stack>`, and :ref:`Engine.capture_script_backtraces()<class_Engine_method_capture_script_backtraces>`.
 
-\ **Note:** Calling this function from a :ref:`Thread<class_Thread>` is not supported. Doing so will instead print the thread ID.
+\ **Note:** By default, backtraces are only available in editor builds and debug builds. To enable them for release builds as well, you need to enable :ref:`ProjectSettings.debug/settings/gdscript/always_track_call_stacks<class_ProjectSettings_property_debug/settings/gdscript/always_track_call_stacks>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1334,6 +1407,7 @@ Returns ``true`` if the given :ref:`Object<class_Object>`-derived class exists i
     type_exists("NonExistentClass") # Returns false
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

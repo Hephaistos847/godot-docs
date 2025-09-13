@@ -481,7 +481,7 @@ Use with :ref:`set_particle_flag()<class_ParticleProcessMaterial_method_set_part
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -585,7 +585,7 @@ enum **SubEmitterMode**: :ref:`🔗<enum_ParticleProcessMaterial_SubEmitterMode>
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -597,7 +597,7 @@ enum **SubEmitterMode**: :ref:`🔗<enum_ParticleProcessMaterial_SubEmitterMode>
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -609,7 +609,7 @@ enum **SubEmitterMode**: :ref:`🔗<enum_ParticleProcessMaterial_SubEmitterMode>
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -621,7 +621,7 @@ enum **SubEmitterMode**: :ref:`🔗<enum_ParticleProcessMaterial_SubEmitterMode>
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -633,7 +633,7 @@ enum **SubEmitterMode**: :ref:`🔗<enum_ParticleProcessMaterial_SubEmitterMode>
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -1402,7 +1402,7 @@ The radius of the ring when using the emitter :ref:`EMISSION_SHAPE_RING<class_Pa
 - |void| **set_emission_shape**\ (\ value\: :ref:`EmissionShape<enum_ParticleProcessMaterial_EmissionShape>`\ )
 - :ref:`EmissionShape<enum_ParticleProcessMaterial_EmissionShape>` **get_emission_shape**\ (\ )
 
-Particles will be emitted inside this region. Use :ref:`EmissionShape<enum_ParticleProcessMaterial_EmissionShape>` constants for values.
+Particles will be emitted inside this region.
 
 .. rst-class:: classref-item-separator
 
@@ -2463,7 +2463,7 @@ Returns the :ref:`Texture2D<class_Texture2D>` used by the specified parameter.
 
 :ref:`bool<class_bool>` **get_particle_flag**\ (\ particle_flag\: :ref:`ParticleFlags<enum_ParticleProcessMaterial_ParticleFlags>`\ ) |const| :ref:`🔗<class_ParticleProcessMaterial_method_get_particle_flag>`
 
-Returns ``true`` if the specified particle flag is enabled. See :ref:`ParticleFlags<enum_ParticleProcessMaterial_ParticleFlags>` for options.
+Returns ``true`` if the specified particle flag is enabled.
 
 .. rst-class:: classref-item-separator
 
@@ -2525,9 +2525,10 @@ Sets the :ref:`Texture2D<class_Texture2D>` for the specified :ref:`Parameter<enu
 
 |void| **set_particle_flag**\ (\ particle_flag\: :ref:`ParticleFlags<enum_ParticleProcessMaterial_ParticleFlags>`, enable\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_ParticleProcessMaterial_method_set_particle_flag>`
 
-If ``true``, enables the specified particle flag. See :ref:`ParticleFlags<enum_ParticleProcessMaterial_ParticleFlags>` for options.
+Sets the ``particle_flag`` to ``enable``.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

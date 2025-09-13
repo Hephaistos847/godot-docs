@@ -76,7 +76,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -88,7 +88,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -100,7 +100,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -112,7 +112,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -124,7 +124,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -136,7 +136,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -148,7 +148,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -160,7 +160,7 @@ enum **InternalImportCategory**: :ref:`🔗<enum_EditorScenePostImportPlugin_Int
 
 .. container:: contribute
 
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+	There is currently no description for this enum. Please help us by `contributing one <https://contributing.godotengine.org/en/latest/documentation/class_reference.html>`__!
 
 
 
@@ -251,7 +251,7 @@ Process a specific node or resource for a given category.
 
 |void| **_post_process**\ (\ scene\: :ref:`Node<class_Node>`\ ) |virtual| :ref:`🔗<class_EditorScenePostImportPlugin_private_method__post_process>`
 
-Post process the scene. This function is called after the final scene has been configured.
+Post-process the scene. This function is called after the final scene has been configured.
 
 .. rst-class:: classref-item-separator
 
@@ -263,9 +263,9 @@ Post process the scene. This function is called after the final scene has been c
 
 |void| **_pre_process**\ (\ scene\: :ref:`Node<class_Node>`\ ) |virtual| :ref:`🔗<class_EditorScenePostImportPlugin_private_method__pre_process>`
 
-Pre Process the scene. This function is called right after the scene format loader loaded the scene and no changes have been made.
+Pre-process the scene. This function is called right after the scene format loader loaded the scene and no changes have been made.
 
-Pre process may be used to adjust internal import options in the ``"nodes"``, ``"meshes"``, ``"animations"`` or ``"materials"`` keys inside ``get_option_value("_subresources")``.
+Pre-process may be used to adjust internal import options in the ``"nodes"``, ``"meshes"``, ``"animations"`` or ``"materials"`` keys inside ``get_option_value("_subresources")``.
 
 .. rst-class:: classref-item-separator
 
@@ -304,6 +304,7 @@ Add a specific import option. This function can only be called from :ref:`_get_i
 Query the value of an option. This function can only be called from those querying visibility, or processing.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`
